@@ -95,7 +95,7 @@ struct MyInfoView: View {
                         GridRow {
                             Text("Birthdate")
                             Spacer()
-                            Text(info.birthDate.formatted())
+                            Text(info.birthDate.formatted(date: .numeric, time: .omitted))
                         }
                         Divider()
                         GridRow {

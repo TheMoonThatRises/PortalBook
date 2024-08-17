@@ -156,13 +156,13 @@ struct DetailedGradeView: View {
                 GridRow {
                     Text("Assigned Date")
                     Spacer()
-                    Text(assignment.date, format: .dateTime)
+                    Text(assignment.date.formatted())
                 }
                 Divider()
                 GridRow {
                     Text("Due Date")
                     Spacer()
-                    Text(assignment.dueDate, format: .dateTime)
+                    Text(assignment.dueDate.formatted())
                 }
                 Divider()
                 GridRow {
@@ -249,7 +249,7 @@ struct DetailedResourceView: View {
                 GridRow {
                     Text("Resource Date")
                     Spacer()
-                    Text(resource.resourceDate, format: .dateTime)
+                    Text(resource.resourceDate.formatted())
                 }
                 Divider()
                 GridRow {

@@ -37,7 +37,7 @@ struct ScheduleView: View {
                     if let todayScheduleInfo = schedule.todayScheduleInfo {
                         HStack {
                             Text("Today: ")
-                            Text(todayScheduleInfo.date, format: .dateTime)
+                            Text(todayScheduleInfo.date.formatted(date: .numeric, time: .omitted))
                         }
                         .padding()
                         .font(.title2)
@@ -157,13 +157,13 @@ struct DetailedTodayClassScheduleView: View {
                 GridRow {
                     Text("Start Time")
                     Spacer()
-                    Text(todayClass.startTime, format: .dateTime)
+                    Text(todayClass.startTime.formatted(date: .omitted, time: .shortened))
                 }
                 Divider()
                 GridRow {
                     Text("End Time")
                     Spacer()
-                    Text(todayClass.endTime, format: .dateTime)
+                    Text(todayClass.endTime.formatted(date: .omitted, time: .shortened))
                 }
                 Divider()
                 GridRow {

@@ -48,7 +48,8 @@ struct HealthInfoView: View {
                                             Text(immunization.compliantMessage)
                                         } else {
                                             Text(
-                                                immunization.immunizationDates.last?.formatted()
+                                                immunization.immunizationDates
+                                                    .last?.formatted(date: .numeric, time: .omitted)
                                                 ?? immunization.compliantMessage
                                             )
                                         }
@@ -121,8 +122,8 @@ struct DetailedImmunizationView: View {
                     Text("Immunization Dates")
                     Spacer()
                     VStack {
-                        ForEach(immunization.immunizationDates, id: \.self) { dates in
-                            Text(dates.formatted())
+                        ForEach(immunization.immunizationDates, id: \.self) { date in
+                            Text(date.formatted(date: .numeric, time: .omitted))
                         }
                     }
                 }
