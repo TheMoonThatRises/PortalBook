@@ -23,14 +23,14 @@ struct ScheduleView: View {
             }
         }
     }
-    
+
     @State var selectedTodayClass: StudentVueApi.ClassScheduleInfo?
     @State var selectedClassList: StudentVueApi.ClassListSchedule?
 
     var body: some View {
         NavigationStack {
             if let schedule = schedule {
-                VStack(alignment: .leading) {
+                ScrollView {
                     Text("Today's Schedule")
                         .bold()
                         .font(.title)
@@ -39,23 +39,28 @@ struct ScheduleView: View {
                             Text("Today: ")
                             Text(todayScheduleInfo.date, format: .dateTime)
                         }
+                        .padding()
                         .font(.title2)
+
                         ForEach(todayScheduleInfo.schoolInfos) { schoolInfo in
-                            HStack {
+                            VStack {
                                 Text("\(schoolInfo.schoolName): \(schoolInfo.bellScheduleName)")
-                                List(schoolInfo.classes) { classInfo in
-                                    Button {
-                                        selectedTodayClass = classInfo
-                                    } label: {
-                                        HStack {
-                                            Text("\(classInfo.period): ")
-                                            Text(classInfo.className)
-                                            Spacer()
-                                            Text(classInfo.startTime, format: .dateTime)
-                                            Text("-")
-                                            Text(classInfo.endTime, format: .dateTime)
-                                            Spacer()
-                                            Text(classInfo.roomName)
+                                Spacer()
+                                Grid {
+                                    ForEach(schoolInfo.classes) { classInfo in
+                                        Divider()
+                                        GridRow {
+                                            Button {
+                                                selectedTodayClass = classInfo
+                                            } label: {
+                                                HStack {
+                                                    Text("\(classInfo.period): ")
+                                                    Text(classInfo.className)
+                                                    Spacer()
+                                                    Text(classInfo.roomName)
+                                                }
+                                                .padding()
+                                            }
                                         }
                                     }
                                 }
@@ -70,15 +75,21 @@ struct ScheduleView: View {
                         .bold()
                         .font(.title)
                     HStack(alignment: .center) {
-                        List(schedule.classLists) { scheduleClass in
-                            Button {
-                                selectedClassList = scheduleClass
-                            } label: {
-                                HStack {
-                                    Text("\(scheduleClass.period): ")
-                                    Text(scheduleClass.courseTitle)
-                                    Spacer()
-                                    Text(scheduleClass.roomName)
+                        Grid {
+                            ForEach(schedule.classLists) { scheduleClass in
+                                Divider()
+                                GridRow {
+                                    Button {
+                                        selectedClassList = scheduleClass
+                                    } label: {
+                                        HStack {
+                                            Text("\(scheduleClass.period): ")
+                                            Text(scheduleClass.courseTitle)
+                                            Spacer()
+                                            Text(scheduleClass.roomName)
+                                        }
+                                        .padding()
+                                    }
                                 }
                             }
                         }
@@ -170,7 +181,7 @@ struct DetailedTodayClassScheduleView: View {
                 GridRow {
                     Text("Class Link")
                     Spacer()
-                    Text(.init("[\(todayClass.classURL)](\(todayClass.classURL)"))
+                    Text(.init("[\(todayClass.classURL)](\(todayClass.classURL))"))
                 }
             }
             .padding()
