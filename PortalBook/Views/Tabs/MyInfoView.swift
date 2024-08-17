@@ -26,9 +26,83 @@ struct MyInfoView: View {
 
     var body: some View {
         NavigationStack {
-            
+            if let info = info {
+                if let photo = info.photo, let data = Data(base64Encoded: photo), let uiImage = UIImage(data: data) {
+                    Image(uiImage: uiImage)
+                }
+
+                Spacer()
+
+                Grid {
+                    GridRow {
+                        let address = info.address.htmlDecoded.components(separatedBy: "<br>")
+
+                        Text("Address")
+                        Spacer()
+                        VStack {
+                            Text(address[0])
+                            Text(address[1])
+                        }
+                    }
+                    Divider()
+                    GridRow {
+                        Text("Phone")
+                        Spacer()
+                        Text(info.phone)
+                    }
+                    Divider()
+                    GridRow {
+                        Text("Student ID")
+                        Spacer()
+                        Text(info.permID)
+                    }
+                    Divider()
+                    GridRow {
+                        Text("Email")
+                        Spacer()
+                        Text(info.email)
+                    }
+                    Divider()
+                    GridRow {
+                        Text("Gender")
+                        Spacer()
+                        Text(info.gender)
+                    }
+                    Divider()
+                    GridRow {
+                        Text("Grade")
+                        Spacer()
+                        Text(info.grade)
+                    }
+                    Divider()
+                    GridRow {
+                        Text("Birthdate")
+                        Spacer()
+                        Text(info.birthDate.formatted())
+                    }
+                    Divider()
+                    GridRow {
+                        Text("Counselor")
+                        Spacer()
+                        Text(info.counselorName)
+                    }
+                    Divider()
+                    GridRow {
+                        Text("Home Room")
+                        Spacer()
+                        VStack {
+                            Text(info.homeRoom)
+                            Text(info.homeRoomTeacher)
+                            Text(info.homeRoomTeacherEmail)
+                        }
+                    }
+                    Divider()
+                }
+            } else if loadingMessage == .empty {
+                Text("Unable to retrieve student information")
+            }
         }
-        .navigationTitle("My Information")
+        .navigationTitle("My Information: \(info?.formattedName ?? "Unknown")")
         .toolbar {
             ToolbarItem {
                 Button {
