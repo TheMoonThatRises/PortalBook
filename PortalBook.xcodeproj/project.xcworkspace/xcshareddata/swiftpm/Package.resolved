@@ -1,4 +1,5 @@
 {
+  "originHash" : "784031bb87b8927b3f69ae3960b5bc2e8944b88621437966cdd77861a898252c",
   "pins" : [
     {
       "identity" : "alerttoast",
@@ -15,7 +16,16 @@
       "location" : "https://github.com/kishikawakatsumi/KeychainAccess",
       "state" : {
         "branch" : "master",
-        "revision" : "ecb18d8ce4d88277cc4fb103973352d91e18c535"
+        "revision" : "e0c7eebc5a4465a3c4680764f26b7a61f567cdaf"
+      }
+    },
+    {
+      "identity" : "studentvue.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/TheMoonThatRises/StudentVue.swift",
+      "state" : {
+        "branch" : "develop",
+        "revision" : "e0903f1f08f5d74387d4492613008a32e9410d15"
       }
     },
     {
@@ -23,8 +33,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/scinfu/SwiftSoup.git",
       "state" : {
-        "revision" : "8b6cf29eead8841a1fa7822481cb3af4ddaadba6",
-        "version" : "2.6.1"
+        "revision" : "32f5aea5af25d4229f3b1a72d6ed0edb3a12a03b",
+        "version" : "2.7.4"
       }
     },
     {
@@ -46,5 +56,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

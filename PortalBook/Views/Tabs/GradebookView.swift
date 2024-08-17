@@ -40,6 +40,9 @@ struct GradebookView: View {
                             }
                             Spacer()
                             if let gradingPeriod = course.grades.first {
+                                let missingAssignments = gradingPeriod.assignments.filter { $0.isMissing }.count
+                                let isPlural = missingAssignments == 1 ? "" : "s"
+
                                 HStack {
                                     Text(gradingPeriod.gradePeriodName)
                                     Text("-")
@@ -48,9 +51,11 @@ struct GradebookView: View {
                                     Text("(\(String(format: "%.2f", gradingPeriod.calculatedGradeRaw))%)")
                                         .font(.subheadline)
                                     Spacer()
-//                                    Text("\(course.missingAssignments) missing assignments")
-//                                        .font(.caption)
-//                                        .foregroundColor(course.missingAssignments > 0 ? .red : nil)
+                                    if missingAssignments > 0 {
+                                        Text("\(missingAssignments) missing assignment\(isPlural)")
+                                            .font(.caption)
+                                            .foregroundStyle(.red)
+                                    }
                                 }
                             }
                         }
@@ -112,8 +117,9 @@ struct ClassView: View {
                             HStack {
                                 Text(grade.measure)
                                 Spacer()
-                                Text(grade.score)
+                                Text(grade.points)
                             }
+                            .foregroundStyle(grade.isMissing ? .red : .blue)
                         }
                     }
                 } label: {
@@ -126,9 +132,6 @@ struct ClassView: View {
                     )
                 }
             }
-        }
-        .onAppear {
-            print(course)
         }
         .navigationTitle(course.name)
         .sheet(item: $selectedAssignment) { item in
@@ -169,12 +172,6 @@ struct DetailedGradeView: View {
                 }
                 Divider()
                 GridRow {
-                    Text("Score")
-                    Spacer()
-                    Text(assignment.score)
-                }
-                Divider()
-                GridRow {
                     Text("Score Type")
                     Spacer()
                     Text(assignment.scoreType)
@@ -184,6 +181,15 @@ struct DetailedGradeView: View {
                     Text("Points")
                     Spacer()
                     Text(assignment.points)
+                }
+                Divider()
+                GridRow {
+                    Text("Last Updated")
+                    Spacer()
+                    Text(
+                        Date(timeIntervalSince1970: Date().timeIntervalSince1970 - assignment.totalSecondsSincePost
+                        ).formatted()
+                    )
                 }
                 Divider()
                 if assignment.resources.count > 0 {
