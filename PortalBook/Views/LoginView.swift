@@ -26,8 +26,6 @@ struct LoginView: View {
 
     @FocusState var focusedField: LoginField?
 
-    @State var rememberLogin = Settings.shared.$rememberLogin
-
     var loggingIn: Bool {
         loadingMessage == .loggingIn
     }
@@ -82,7 +80,7 @@ struct LoginView: View {
                 .padding([.leading, .trailing], 27.5)
                 .disabled(loggingIn)
 
-                Toggle(isOn: rememberLogin, label: {
+                Toggle(isOn: Settings.shared.$rememberLogin, label: {
                     Text("Remember me")
                 })
                 .padding([.leading, .trailing], 27.5)
@@ -134,13 +132,17 @@ struct LoginView: View {
             do {
                 Settings.shared.didManuallyLogout = false
 
-                _ = try await client.scraper.login()
+                Task {
+                    _ = try await client.scraper.login()
+                }
+
+                _ = try await client.api.getMessages()
 
                 withAnimation(.easeInOut) {
                     viewIndex = .homeView
                 }
 
-                if rememberLogin.wrappedValue {
+                if Settings.shared.rememberLogin {
                     try await PortalKeychain.shared.save(username: username,
                                                          password: password,
                                                          domain: StudentVue.domain)
