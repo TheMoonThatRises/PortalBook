@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct NavigationLinkRow: View {
     var title: String
     var image: Image
