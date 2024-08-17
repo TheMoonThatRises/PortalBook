@@ -175,7 +175,15 @@ struct DetailedTodayClassScheduleView: View {
                 GridRow {
                     Text("Teacher Email")
                     Spacer()
-                    Text(todayClass.teacherEmail)
+                    if let email = URL(string: "mailto:\(todayClass.teacherEmail)") {
+                        Button {
+                            UIApplication.shared.open(email)
+                        } label: {
+                            Text(todayClass.teacherEmail)
+                        }
+                    } else {
+                        Text(todayClass.teacherEmail)
+                    }
                 }
                 Divider()
                 GridRow {
@@ -226,7 +234,15 @@ struct DetailedClassListScheduleView: View {
                 GridRow {
                     Text("Teacher Email")
                     Spacer()
-                    Text(scheduleClass.teacherEmail)
+                    if let email = URL(string: "mailto:\(scheduleClass.teacherEmail)") {
+                        Button {
+                            UIApplication.shared.open(email)
+                        } label: {
+                            Text(scheduleClass.teacherEmail)
+                        }
+                    } else {
+                        Text(scheduleClass.teacherEmail)
+                    }
                 }
             }
             .padding()

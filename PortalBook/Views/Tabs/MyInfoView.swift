@@ -69,7 +69,15 @@ struct MyInfoView: View {
                         GridRow {
                             Text("Email")
                             Spacer()
-                            Text(info.email)
+                            if let email = URL(string: "mailto:\(info.email)") {
+                                Button {
+                                    UIApplication.shared.open(email)
+                                } label: {
+                                    Text(info.email)
+                                }
+                            } else {
+                                Text(info.email)
+                            }
                         }
                         Divider()
                         GridRow {
@@ -102,10 +110,19 @@ struct MyInfoView: View {
                             VStack {
                                 Text(info.homeRoom)
                                 Text(info.homeRoomTeacher)
-                                Text(info.homeRoomTeacherEmail)
+                                if let email = URL(string: "mailto:\(info.homeRoomTeacherEmail)") {
+                                    Button {
+                                        UIApplication.shared.open(email)
+                                    } label: {
+                                        Text(info.homeRoomTeacherEmail)
+                                    }
+                                } else {
+                                    Text(info.homeRoomTeacherEmail)
+                                }
                             }
                         }
                     }
+                    .padding()
 
                     Divider()
                         .padding()
