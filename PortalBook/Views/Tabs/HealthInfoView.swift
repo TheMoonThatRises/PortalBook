@@ -24,9 +24,44 @@ struct HealthInfoView: View {
         }
     }
 
+    @State var selectedImmunization: StudentVueApi.HealthImmunizationListing?
+
     var body: some View {
         NavigationStack {
+            if let info = info {
+                ScrollView {
+                    Text("Health Immunizations")
+                        .bold()
+                        .font(.title)
 
+                    Grid {
+                        ForEach(info.healthImmunizationListing) { immunization in
+                            Divider()
+                            GridRow {
+                                Button {
+                                    selectedImmunization = immunization
+                                } label: {
+                                    HStack {
+                                        Text(immunization.name)
+                                        Spacer()
+                                        if immunization.immunizationDates.isEmpty {
+                                            Text(immunization.compliantMessage)
+                                        } else {
+                                            Text(
+                                                immunization.immunizationDates.last?.formatted()
+                                                ?? immunization.compliantMessage
+                                            )
+                                        }
+                                    }
+                                    .padding()
+                                }
+                            }
+                        }
+                    }
+                }
+            } else if loadingMessage == .empty {
+                Text("Unable to retrieve health information")
+            }
         }
         .navigationTitle("Health Information")
         .toolbar {
@@ -53,6 +88,53 @@ struct HealthInfoView: View {
                 } catch {
                     print("error: \(error.localizedDescription)")
                     errorMessage = error.localizedDescription
+                }
+            }
+        }
+        .sheet(item: $selectedImmunization) { selected in
+            DetailedImmunizationView(immunization: selected)
+        }
+    }
+}
+
+struct DetailedImmunizationView: View {
+    @Environment(\.dismiss) var dismiss
+
+    var immunization: StudentVueApi.HealthImmunizationListing
+
+    var body: some View {
+        NavigationStack {
+            Grid {
+                GridRow {
+                    Text("Compliant Message")
+                    Spacer()
+                    Text(immunization.compliantMessage)
+                }
+                Divider()
+                GridRow {
+                    Text("Compliant")
+                    Spacer()
+                    Text(immunization.compliant ? "True" : "False")
+                }
+                Divider()
+                GridRow {
+                    Text("Immunization Dates")
+                    Spacer()
+                    VStack {
+                        ForEach(immunization.immunizationDates, id: \.self) { dates in
+                            Text(dates.formatted())
+                        }
+                    }
+                }
+                Divider()
+            }
+            .padding()
+            .navigationTitle(immunization.name)
+            .toolbar {
+                ToolbarItem {
+                    Button("Close") {
+                        dismiss()
+                    }
                 }
             }
         }
