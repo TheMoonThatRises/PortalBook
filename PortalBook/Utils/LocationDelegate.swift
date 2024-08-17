@@ -40,8 +40,6 @@ class LocationDelegate: NSObject, ObservableObject, CLLocationManagerDelegate {
                 if let error = error {
                     print(error)
                 } else {
-                    print(placemark?.first)
-
                     self.location = placemark?.first?.postalCode
                 }
             }
