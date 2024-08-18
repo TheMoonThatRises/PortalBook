@@ -35,20 +35,22 @@ struct HomeView: View {
                     NavigationLinkRow(title: "Schedule", image: Image(systemName: "clock.fill"))
                 }
                 NavigationLink {
+                    AttendanceView(client: client,
+                                   loadingMessage: $loadingMessage,
+                                   errorMessage: $errorMessage)
+                } label: {
+                    NavigationLinkRow(title: "Attendance", image: Image(systemName: "calendar"))
+                }
+                NavigationLink {
                     InfoView(client: client,
                              loadingMessage: $loadingMessage,
                              errorMessage: $errorMessage)
                 } label: {
                     NavigationLinkRow(title: "All Info", image: Image(systemName: "info.square.fill"))
                 }
+
 //                HomeViewRow(title: "Mail", image: Image(systemName: "envelope.fill"))
 //                HomeViewRow(title: "Calendar", image: Image(systemName: "calendar"))
-//                HomeViewRow(title: "Attendance", image: Image(systemName: "clock.badge.checkmark.fill"))
-//                HomeViewRow(title: "Gradebook", image: Image(systemName: "a"))
-//                HomeViewRow(title: "My Info", image: Image(systemName: "info.square.fill"))
-//                HomeViewRow(title: "Schedule", image: Image(systemName: "clock.fill"))
-//                HomeViewRow(title: "Health", image: Image(systemName: "heart.text.square.fill"))
-//                HomeViewRow(title: "School Info", image: Image(systemName: "building.2.fill"))
 //                HomeViewRow(title: "Fee", image: Image(systemName: "wallet.pass.fill"))
 //                HomeViewRow(title: "Conference", image: Image(systemName: "person.3.fill"))
 //                HomeViewRow(title: "Report Card", image: Image(systemName: "doc.text.fill"))

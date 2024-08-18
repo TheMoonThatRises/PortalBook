@@ -13,6 +13,7 @@ enum LoadingMessages: String {
     case loggingIn = "Logging In"
     case retreivingCredentials = "Retrieving Credentials"
     case loadingGrades = "Loading Grades"
+    case loadingAttendance = "Loading Attendance"
     case loadingSchedule = "Loading Schedule"
     case loadingMyInfo = "Loading My Info"
 }
