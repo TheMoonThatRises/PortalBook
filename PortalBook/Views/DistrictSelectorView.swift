@@ -96,6 +96,8 @@ struct DistrictSelectorView: View {
                     loadingMessage = .empty
                 }
 
+                try await Task.sleep(nanoseconds: 70_000_000)
+
                 districtList = try await StudentVueApi.getDistricts(zip: zipCode)
 
                 districtList?.districts = Array(Set(districtList?.districts ?? []))
@@ -132,13 +134,4 @@ struct DistrictView: View {
         }
         .padding()
     }
-}
-
-#Preview {
-    DistrictSelectorView(
-        client: .constant(StudentVue(domain: "", username: "", password: "")),
-        setView: .constant(.districtView),
-        loadingMessage: .constant(.empty),
-        errorMessage: .constant("")
-    )
 }
