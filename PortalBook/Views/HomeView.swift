@@ -34,18 +34,25 @@ struct HomeView: View {
                     NavigationLinkRow(title: "Schedule", image: Image(systemName: "clock"))
                 }
                 NavigationLink {
-                    InfoView(client: client,
-                             loadingMessage: $loadingMessage,
-                             errorMessage: $errorMessage)
+                    CalendarView(client: client,
+                                 loadingMessage: $loadingMessage,
+                                 errorMessage: $errorMessage)
                 } label: {
-                    NavigationLinkRow(title: "All Info", image: Image(systemName: "info.square"))
+                    NavigationLinkRow(title: "Calendar", image: Image(systemName: "calendar"))
                 }
                 NavigationLink {
                     AttendanceView(client: client,
                                    loadingMessage: $loadingMessage,
                                    errorMessage: $errorMessage)
                 } label: {
-                    NavigationLinkRow(title: "Attendance", image: Image(systemName: "calendar"))
+                    NavigationLinkRow(title: "Attendance", image: Image(systemName: "person.and.person"))
+                }
+                NavigationLink {
+                    InfoView(client: client,
+                             loadingMessage: $loadingMessage,
+                             errorMessage: $errorMessage)
+                } label: {
+                    NavigationLinkRow(title: "All Info", image: Image(systemName: "info.square"))
                 }
                 NavigationLink {
                     CourseHistoryView(client: client,
@@ -56,14 +63,7 @@ struct HomeView: View {
                 }
 
 //                NavigationLinkRow(title: "Mail", image: Image(systemName: "envelope.fill"))
-//                NavigationLinkRow(title: "Calendar", image: Image(systemName: "calendar"))
 //                NavigationLinkRow(title: "Fee", image: Image(systemName: "wallet.pass.fill"))
-//                NavigationLinkRow(title: "Conference", image: Image(systemName: "person.3.fill"))
-//                NavigationLinkRow(title: "Report Card", image: Image(systemName: "doc.text.fill"))
-//                NavigationLinkRow(title: "Course Request", image: Image(systemName: "rectangle.inset.filled.and.person.filled"))
-//                NavigationLinkRow(title: "MTSS", image: Image(systemName: "pyramid.fill"))
-//                NavigationLinkRow(title: "Assessment", image: Image(systemName: "studentdesk"))
-//                NavigationLinkRow(title: "Graduation Requirements", image: Image(systemName: "graduationcap.fill"))
             }
             .navigationTitle("PortalBook")
             .toolbar {
@@ -99,6 +99,9 @@ struct HomeView: View {
                         Image(systemName: "line.3.horizontal")
                     }
                 }
+            }
+            .onAppear {
+                loadingMessage = .empty
             }
         }
     }

@@ -1,13 +1,22 @@
 {
-  "originHash" : "17b9b57e6432a8783ccbdb437187a7b2e4f8747aab7c533176fea2928dde17ec",
+  "originHash" : "7c6551a119060f767d8d180f56bd3bce05c5db442eab2c809305ccc805df7671",
   "pins" : [
     {
       "identity" : "alerttoast",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/elai950/AlertToast",
       "state" : {
-        "revision" : "b39252eacd159904afd7d718bba0afabb87f2f2f",
-        "version" : "1.3.9"
+        "branch" : "master",
+        "revision" : "638f38f9daf08e17b7caea22d2fcb9c0a418d1b6"
+      }
+    },
+    {
+      "identity" : "calendarview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Mijick/CalendarView",
+      "state" : {
+        "revision" : "b347587ba39a023b61881158872db9d01a90a9a6",
+        "version" : "1.0.0"
       }
     },
     {
@@ -25,7 +34,7 @@
       "location" : "https://github.com/TheMoonThatRises/StudentVue.swift",
       "state" : {
         "branch" : "develop",
-        "revision" : "64b6ff31ea011796e4b3eb19a95d6dbc74a4ecc4"
+        "revision" : "21cda13ed611c4723ae975cc8a6fcc3f0c0ae1e2"
       }
     },
     {
