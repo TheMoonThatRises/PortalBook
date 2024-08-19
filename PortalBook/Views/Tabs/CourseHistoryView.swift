@@ -21,10 +21,55 @@ struct CourseHistoryView: View {
         }
     }
 
+    @State var selectedCourse: StudentVueScraper.CourseData?
+
     var body: some View {
         NavigationStack {
-
+            if let courseHistory = courseHistory?.courseHistory {
+                ScrollView {
+                    ForEach(courseHistory) { history in
+                        DisclosureGroup {
+                            ForEach(history.terms) { term in
+                                DisclosureGroup {
+                                    Grid {
+                                        GridRow {
+                                            Text("Course Name")
+                                            Spacer()
+                                            Text("Mark")
+                                        }
+                                        .bold()
+                                        ForEach(term.courses) { course in
+                                            Divider()
+                                            GridRow {
+                                                Text(course.courseTitle)
+                                                Spacer()
+                                                Text(course.mark)
+                                            }
+                                            .onTapGesture {
+                                                selectedCourse = course
+                                            }
+                                        }
+                                    }
+                                } label: {
+                                    Text("\(term.schoolName) \(term.year) \(term.termName)")
+                                        .foregroundStyle(Color(UIColor.lightGray))
+                                        .padding()
+                                }
+                            }
+                        } label: {
+                            Text("Grade \(history.grade)")
+                                .bold()
+                                .font(.title)
+                                .foregroundStyle(.white)
+                                .padding()
+                        }
+                    }
+                }
+            } else if loadingMessage == .empty {
+                Text("Unable to load course history")
+            }
         }
+        .frame(alignment: .topLeading)
         .navigationTitle("Course History")
         .toolbar {
             ToolbarItem {
@@ -45,7 +90,6 @@ struct CourseHistoryView: View {
                 loadingMessage = .loadingCourseHistory
 
                 do {
-                    print(try await client.scraper.autoThrowApi(endpoint: .courseHistory).html)
                     courseHistory = try await client.scraper.getCourseHistory()
                 } catch {
                     print("error: \(error.localizedDescription)")
@@ -53,5 +97,66 @@ struct CourseHistoryView: View {
                 }
             }
         }
+        .sheet(item: $selectedCourse) { selected in
+            DetailedCourseView(course: selected)
+        }
     }
 }
+
+struct DetailedCourseView: View {
+    @Environment(\.dismiss) var dismiss
+
+    var course: StudentVueScraper.CourseData
+
+    var body: some View {
+        NavigationStack {
+            Grid {
+                GridRow {
+                    Text("Course ID")
+                    Spacer()
+                    Text(course.courseID)
+                }
+                Divider()
+                GridRow {
+                    Text("Credits Attempted")
+                    Spacer()
+                    Text(course.creditsAttempted)
+                }
+                Divider()
+                GridRow {
+                    Text("Credits Completed")
+                    Spacer()
+                    Text(course.creditsCompleted)
+                }
+                Divider()
+                GridRow {
+                    Text("Verified Credit")
+                    Spacer()
+                    Text(course.verifiedCredit)
+                }
+                Divider()
+                GridRow {
+                    Text("Mark")
+                    Spacer()
+                    Text(course.mark)
+                }
+                Divider()
+                GridRow {
+                    Text("CHS Type")
+                    Spacer()
+                    Text(course.chsType)
+                }
+            }
+            .padding()
+            .navigationTitle(course.courseTitle)
+            .toolbar {
+                ToolbarItem {
+                    Button("Close") {
+                        dismiss()
+                    }
+                }
+            }
+        }
+    }
+}
+
