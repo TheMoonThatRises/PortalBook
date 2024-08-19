@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B61A23292A8FBB67007E3965 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61A23282A8FBB67007E3965 /* Settings.swift */; };
-		B61D05EB2A8A881F003219F8 /* URLCache+iconCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61D05EA2A8A881F003219F8 /* URLCache+iconCache.swift */; };
 		B61D05F12A8AC05D003219F8 /* PortalKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61D05F02A8AC05D003219F8 /* PortalKeychain.swift */; };
 		B61D05F72A8AD3FC003219F8 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61D05F62A8AD3FC003219F8 /* Errors.swift */; };
 		B62D55582AEDA73300B896E0 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62D55572AEDA73300B896E0 /* InfoView.swift */; };
@@ -23,15 +22,17 @@
 		B6766B742C6FB7F200B9557F /* StudentVue in Frameworks */ = {isa = PBXBuildFile; productRef = B6766B732C6FB7F200B9557F /* StudentVue */; };
 		B67F0E3F2AED613200E1A2BB /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67F0E3E2AED613200E1A2BB /* ScheduleView.swift */; };
 		B683A6DD2AEB01F7003E8B13 /* LocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B683A6DC2AEB01F7003E8B13 /* LocationDelegate.swift */; };
+		B6BD9B1B2C71E03F005C6483 /* CourseHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BD9B1A2C71E039005C6483 /* CourseHistoryView.swift */; };
 		B6C3E9B32AE9AE6500C11028 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = B6C3E9B22AE9AE6500C11028 /* KeychainAccess */; };
 		B6C3E9B82AEA2F6800C11028 /* StudentVue in Frameworks */ = {isa = PBXBuildFile; productRef = B6C3E9B72AEA2F6800C11028 /* StudentVue */; };
-		B6DBC1922A870E40004E7043 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = B6DBC1912A870E40004E7043 /* CachedAsyncImage */; };
 		B6DBC1952A870E4D004E7043 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = B6DBC1942A870E4D004E7043 /* AlertToast */; };
 		B6DBC1972A870E8C004E7043 /* DistrictSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DBC1962A870E8C004E7043 /* DistrictSelectorView.swift */; };
 		B6E1036A2A83DC7E00F98DA5 /* PortalBookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E103692A83DC7E00F98DA5 /* PortalBookApp.swift */; };
 		B6E1036C2A83DC7E00F98DA5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E1036B2A83DC7E00F98DA5 /* LoginView.swift */; };
 		B6E1036E2A83DC8100F98DA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6E1036D2A83DC8100F98DA5 /* Assets.xcassets */; };
 		B6E103712A83DC8100F98DA5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6E103702A83DC8100F98DA5 /* Preview Assets.xcassets */; };
+		B6E722DB2C72FCE7009102DA /* IDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E722DA2C72FCE4009102DA /* IDView.swift */; };
+		B6E722DF2C73033A009102DA /* Image+barCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E722DE2C73032D009102DA /* Image+barCode.swift */; };
 		B6F2204E2AEAAC8000AA99E6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F2204D2AEAAC8000AA99E6 /* HomeView.swift */; };
 		B6F5F4DE2C7028DB001D5283 /* StudentVueApi+Missing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F5F4DD2C7028D3001D5283 /* StudentVueApi+Missing.swift */; };
 		B6F5F4E02C702EAC001D5283 /* String+htmlDecoded.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F5F4DF2C702EA8001D5283 /* String+htmlDecoded.swift */; };
@@ -41,7 +42,6 @@
 
 /* Begin PBXFileReference section */
 		B61A23282A8FBB67007E3965 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		B61D05EA2A8A881F003219F8 /* URLCache+iconCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLCache+iconCache.swift"; sourceTree = "<group>"; };
 		B61D05F02A8AC05D003219F8 /* PortalKeychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortalKeychain.swift; sourceTree = "<group>"; };
 		B61D05F62A8AD3FC003219F8 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		B62D55572AEDA73300B896E0 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
@@ -54,12 +54,15 @@
 		B665D9292AEB4DF300282F26 /* GradebookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradebookView.swift; sourceTree = "<group>"; };
 		B67F0E3E2AED613200E1A2BB /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
 		B683A6DC2AEB01F7003E8B13 /* LocationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDelegate.swift; sourceTree = "<group>"; };
+		B6BD9B1A2C71E039005C6483 /* CourseHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseHistoryView.swift; sourceTree = "<group>"; };
 		B6DBC1962A870E8C004E7043 /* DistrictSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistrictSelectorView.swift; sourceTree = "<group>"; };
 		B6E103662A83DC7E00F98DA5 /* PortalBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PortalBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6E103692A83DC7E00F98DA5 /* PortalBookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortalBookApp.swift; sourceTree = "<group>"; };
 		B6E1036B2A83DC7E00F98DA5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B6E1036D2A83DC8100F98DA5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B6E103702A83DC8100F98DA5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B6E722DA2C72FCE4009102DA /* IDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDView.swift; sourceTree = "<group>"; };
+		B6E722DE2C73032D009102DA /* Image+barCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+barCode.swift"; sourceTree = "<group>"; };
 		B6F2204D2AEAAC8000AA99E6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B6F5F4DD2C7028D3001D5283 /* StudentVueApi+Missing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudentVueApi+Missing.swift"; sourceTree = "<group>"; };
 		B6F5F4DF2C702EA8001D5283 /* String+htmlDecoded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+htmlDecoded.swift"; sourceTree = "<group>"; };
@@ -72,7 +75,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6DBC1922A870E40004E7043 /* CachedAsyncImage in Frameworks */,
 				B665D9352AEB6B7E00282F26 /* StudentVue in Frameworks */,
 				B6C3E9B82AEA2F6800C11028 /* StudentVue in Frameworks */,
 				B6C3E9B32AE9AE6500C11028 /* KeychainAccess in Frameworks */,
@@ -87,10 +89,10 @@
 		B61D05E92A8A8814003219F8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B6E722DE2C73032D009102DA /* Image+barCode.swift */,
 				B6F5F4E32C705E8D001D5283 /* Color+attendance.swift */,
 				B6F5F4DF2C702EA8001D5283 /* String+htmlDecoded.swift */,
 				B6F5F4DD2C7028D3001D5283 /* StudentVueApi+Missing.swift */,
-				B61D05EA2A8A881F003219F8 /* URLCache+iconCache.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -110,6 +112,7 @@
 		B625DD022A86D8A800C79478 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B6E722D92C72FCDB009102DA /* DropDown */,
 				B665D9272AEB4D6C00282F26 /* Tabs */,
 				B6DBC1962A870E8C004E7043 /* DistrictSelectorView.swift */,
 				B6E1036B2A83DC7E00F98DA5 /* LoginView.swift */,
@@ -138,6 +141,7 @@
 		B665D9272AEB4D6C00282F26 /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
+				B6BD9B1A2C71E039005C6483 /* CourseHistoryView.swift */,
 				B6F5F4E12C705695001D5283 /* AttendanceView.swift */,
 				B665D9292AEB4DF300282F26 /* GradebookView.swift */,
 				B67F0E3E2AED613200E1A2BB /* ScheduleView.swift */,
@@ -187,6 +191,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		B6E722D92C72FCDB009102DA /* DropDown */ = {
+			isa = PBXGroup;
+			children = (
+				B6E722DA2C72FCE4009102DA /* IDView.swift */,
+			);
+			path = DropDown;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -205,7 +217,6 @@
 			);
 			name = PortalBook;
 			packageProductDependencies = (
-				B6DBC1912A870E40004E7043 /* CachedAsyncImage */,
 				B6DBC1942A870E4D004E7043 /* AlertToast */,
 				B6C3E9B22AE9AE6500C11028 /* KeychainAccess */,
 				B6C3E9B72AEA2F6800C11028 /* StudentVue */,
@@ -241,7 +252,6 @@
 			);
 			mainGroup = B6E1035D2A83DC7E00F98DA5;
 			packageReferences = (
-				B6DBC1902A870E40004E7043 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
 				B6DBC1932A870E4D004E7043 /* XCRemoteSwiftPackageReference "AlertToast" */,
 				B6C3E9B12AE9AE6500C11028 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				B6766B722C6FB7F200B9557F /* XCRemoteSwiftPackageReference "StudentVue" */,
@@ -297,16 +307,18 @@
 				B6F2204E2AEAAC8000AA99E6 /* HomeView.swift in Sources */,
 				B6F5F4E02C702EAC001D5283 /* String+htmlDecoded.swift in Sources */,
 				B62D55632AEDC34800B896E0 /* HealthInfoView.swift in Sources */,
+				B6E722DF2C73033A009102DA /* Image+barCode.swift in Sources */,
 				B62D555F2AEDC0E400B896E0 /* NavigationLinkRow.swift in Sources */,
-				B61D05EB2A8A881F003219F8 /* URLCache+iconCache.swift in Sources */,
 				B62D55612AEDC14F00B896E0 /* MyInfoView.swift in Sources */,
 				B6E1036C2A83DC7E00F98DA5 /* LoginView.swift in Sources */,
 				B6F5F4DE2C7028DB001D5283 /* StudentVueApi+Missing.swift in Sources */,
 				B6E1036A2A83DC7E00F98DA5 /* PortalBookApp.swift in Sources */,
 				B62D555A2AEDAC5600B896E0 /* LoadingMessages.swift in Sources */,
+				B6BD9B1B2C71E03F005C6483 /* CourseHistoryView.swift in Sources */,
 				B6DBC1972A870E8C004E7043 /* DistrictSelectorView.swift in Sources */,
 				B61A23292A8FBB67007E3965 /* Settings.swift in Sources */,
 				B665D92A2AEB4DF300282F26 /* GradebookView.swift in Sources */,
+				B6E722DB2C72FCE7009102DA /* IDView.swift in Sources */,
 				B62D55652AEDC38200B896E0 /* SchoolInfoView.swift in Sources */,
 				B61D05F72A8AD3FC003219F8 /* Errors.swift in Sources */,
 				B6F5F4E42C705E91001D5283 /* Color+attendance.swift in Sources */,
@@ -562,14 +574,6 @@
 				kind = branch;
 			};
 		};
-		B6DBC1902A870E40004E7043 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/lorenzofiamingo/swiftui-cached-async-image";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.1.1;
-			};
-		};
 		B6DBC1932A870E4D004E7043 /* XCRemoteSwiftPackageReference "AlertToast" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/elai950/AlertToast";
@@ -598,11 +602,6 @@
 		B6C3E9B72AEA2F6800C11028 /* StudentVue */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = StudentVue;
-		};
-		B6DBC1912A870E40004E7043 /* CachedAsyncImage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B6DBC1902A870E40004E7043 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
-			productName = CachedAsyncImage;
 		};
 		B6DBC1942A870E4D004E7043 /* AlertToast */ = {
 			isa = XCSwiftPackageProductDependency;

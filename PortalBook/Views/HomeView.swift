@@ -7,7 +7,6 @@
 
 import SwiftUI
 import StudentVue
-import CachedAsyncImage
 
 struct HomeView: View {
     var client: StudentVue
@@ -32,7 +31,14 @@ struct HomeView: View {
                                  loadingMessage: $loadingMessage,
                                  errorMessage: $errorMessage)
                 } label: {
-                    NavigationLinkRow(title: "Schedule", image: Image(systemName: "clock.fill"))
+                    NavigationLinkRow(title: "Schedule", image: Image(systemName: "clock"))
+                }
+                NavigationLink {
+                    InfoView(client: client,
+                             loadingMessage: $loadingMessage,
+                             errorMessage: $errorMessage)
+                } label: {
+                    NavigationLinkRow(title: "All Info", image: Image(systemName: "info.square"))
                 }
                 NavigationLink {
                     AttendanceView(client: client,
@@ -42,28 +48,34 @@ struct HomeView: View {
                     NavigationLinkRow(title: "Attendance", image: Image(systemName: "calendar"))
                 }
                 NavigationLink {
-                    InfoView(client: client,
-                             loadingMessage: $loadingMessage,
-                             errorMessage: $errorMessage)
+                    CourseHistoryView(client: client,
+                                      loadingMessage: $loadingMessage,
+                                      errorMessage: $errorMessage)
                 } label: {
-                    NavigationLinkRow(title: "All Info", image: Image(systemName: "info.square.fill"))
+                    NavigationLinkRow(title: "Course History", image: Image(systemName: "book.pages"))
                 }
 
-//                HomeViewRow(title: "Mail", image: Image(systemName: "envelope.fill"))
-//                HomeViewRow(title: "Calendar", image: Image(systemName: "calendar"))
-//                HomeViewRow(title: "Fee", image: Image(systemName: "wallet.pass.fill"))
-//                HomeViewRow(title: "Conference", image: Image(systemName: "person.3.fill"))
-//                HomeViewRow(title: "Report Card", image: Image(systemName: "doc.text.fill"))
-//                HomeViewRow(title: "Course History", image: Image(systemName: "globe.desk.fill"))
-//                HomeViewRow(title: "Course Request", image: Image(systemName: "rectangle.inset.filled.and.person.filled"))
-//                HomeViewRow(title: "MTSS", image: Image(systemName: "pyramid.fill"))
-//                HomeViewRow(title: "Assessment", image: Image(systemName: "studentdesk"))
-//                HomeViewRow(title: "Graduation Requirements", image: Image(systemName: "graduationcap.fill"))
+//                NavigationLinkRow(title: "Mail", image: Image(systemName: "envelope.fill"))
+//                NavigationLinkRow(title: "Calendar", image: Image(systemName: "calendar"))
+//                NavigationLinkRow(title: "Fee", image: Image(systemName: "wallet.pass.fill"))
+//                NavigationLinkRow(title: "Conference", image: Image(systemName: "person.3.fill"))
+//                NavigationLinkRow(title: "Report Card", image: Image(systemName: "doc.text.fill"))
+//                NavigationLinkRow(title: "Course Request", image: Image(systemName: "rectangle.inset.filled.and.person.filled"))
+//                NavigationLinkRow(title: "MTSS", image: Image(systemName: "pyramid.fill"))
+//                NavigationLinkRow(title: "Assessment", image: Image(systemName: "studentdesk"))
+//                NavigationLinkRow(title: "Graduation Requirements", image: Image(systemName: "graduationcap.fill"))
             }
             .navigationTitle("PortalBook")
             .toolbar {
                 ToolbarItem {
                     Menu {
+                        NavigationLink {
+                            IDView(client: client,
+                                   loadingMessage: $loadingMessage,
+                                   errorMessage: $errorMessage)
+                        } label: {
+                            Text("Student ID")
+                        }
                         Button("Settings") {
 
                         }

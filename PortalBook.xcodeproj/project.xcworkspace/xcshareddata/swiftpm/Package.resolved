@@ -1,5 +1,5 @@
 {
-  "originHash" : "784031bb87b8927b3f69ae3960b5bc2e8944b88621437966cdd77861a898252c",
+  "originHash" : "17b9b57e6432a8783ccbdb437187a7b2e4f8747aab7c533176fea2928dde17ec",
   "pins" : [
     {
       "identity" : "alerttoast",
@@ -25,7 +25,7 @@
       "location" : "https://github.com/TheMoonThatRises/StudentVue.swift",
       "state" : {
         "branch" : "develop",
-        "revision" : "c5a94fb0c262bb3fe755f1ac9fda530e257f2250"
+        "revision" : "64b6ff31ea011796e4b3eb19a95d6dbc74a4ecc4"
       }
     },
     {
@@ -35,15 +35,6 @@
       "state" : {
         "revision" : "32f5aea5af25d4229f3b1a72d6ed0edb3a12a03b",
         "version" : "2.7.4"
-      }
-    },
-    {
-      "identity" : "swiftui-cached-async-image",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/lorenzofiamingo/swiftui-cached-async-image",
-      "state" : {
-        "revision" : "467a3d17479887943ab917a379e62bbaff60ac8a",
-        "version" : "2.1.1"
       }
     },
     {
