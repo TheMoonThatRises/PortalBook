@@ -52,7 +52,7 @@ struct CourseHistoryView: View {
                                     }
                                 } label: {
                                     Text("\(term.schoolName) \(term.year) \(term.termName)")
-                                        .foregroundStyle(Color(UIColor.lightGray))
+                                        .foregroundStyle(Color.accentColor)
                                         .padding()
                                 }
                             }
@@ -60,7 +60,7 @@ struct CourseHistoryView: View {
                             Text("Grade \(history.grade)")
                                 .bold()
                                 .font(.title)
-                                .foregroundStyle(.white)
+                                .foregroundStyle(Color.primary)
                                 .padding()
                         }
                     }
