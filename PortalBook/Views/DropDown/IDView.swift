@@ -71,31 +71,31 @@ struct IDView: View {
                     Text("Unable to retrieve student information for id")
                 }
             }
-            .navigationTitle("Student ID")
-            .toolbar {
-                ToolbarItem {
-                    Button {
-                        info = nil
-                    } label: {
-                        Image(systemName: "arrow.clockwise")
-                    }
+        }
+        .navigationTitle("Student ID")
+        .toolbar {
+            ToolbarItem {
+                Button {
+                    info = nil
+                } label: {
+                    Image(systemName: "arrow.clockwise")
                 }
             }
-            .onAppear { info == nil ? info = nil : nil }
-            .onChange(of: refresh) {
-                Task {
-                    defer {
-                        loadingMessage = .empty
-                    }
+        }
+        .onAppear { info == nil ? info = nil : nil }
+        .onChange(of: refresh) {
+            Task {
+                defer {
+                    loadingMessage = .empty
+                }
 
-                    loadingMessage = .loadingMyInfo
+                loadingMessage = .loadingMyInfo
 
-                    do {
-                        info = try await client.api.getStudentInfo()
-                    } catch {
-                        print("error: \(error.localizedDescription)")
-                        errorMessage = error.localizedDescription
-                    }
+                do {
+                    info = try await client.api.getStudentInfo()
+                } catch {
+                    print("error: \(error.localizedDescription)")
+                    errorMessage = error.localizedDescription
                 }
             }
         }
