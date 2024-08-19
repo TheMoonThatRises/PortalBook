@@ -15,6 +15,9 @@ enum LoadingMessages: String {
     case loadingGrades = "Loading Grades"
     case loadingAttendance = "Loading Attendance"
     case loadingCourseHistory = "Loading Course History"
+    case loadingCalendar = "Loading Calendar"
     case loadingSchedule = "Loading Schedule"
     case loadingMyInfo = "Loading My Info"
+    case loadingSchoolInfo = "Loading School Info"
+    case loadingHealthInfo = "Loading Health Info"
 }

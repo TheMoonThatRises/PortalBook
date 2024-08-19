@@ -81,7 +81,7 @@ struct HealthInfoView: View {
                     loadingMessage = .empty
                 }
 
-                loadingMessage = .loadingMyInfo
+                loadingMessage = .loadingHealthInfo
 
                 do {
                     info = try await client.api.getHealthInfo()

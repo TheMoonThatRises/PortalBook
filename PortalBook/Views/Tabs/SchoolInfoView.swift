@@ -118,7 +118,7 @@ struct SchoolInfoView: View {
                     loadingMessage = .empty
                 }
 
-                loadingMessage = .loadingMyInfo
+                loadingMessage = .loadingSchoolInfo
 
                 do {
                     info = try await client.api.getSchoolInfo()
