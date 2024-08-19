@@ -261,7 +261,6 @@ struct DetailedResourceView: View {
                         Text("None")
                     }
                 }
-                Divider()
             }
             .padding()
             .navigationTitle(resource.resourceName)
