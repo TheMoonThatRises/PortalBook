@@ -136,7 +136,7 @@ struct LoginView: View {
                     _ = try await client.scraper.login()
                 }
 
-                _ = try await client.api.getMessages()
+                _ = try await client.api.xmlServiceRequest(methodName: .getSoundFileData)
 
                 withAnimation(.easeInOut) {
                     viewIndex = .homeView
@@ -164,13 +164,4 @@ struct LoginView: View {
             }
         }
     }
-}
-
-#Preview {
-    LoginView(
-        client: .constant(StudentVue(domain: "test.edupoint.com", username: "", password: "")),
-        viewIndex: .constant(.loginView),
-        loadingMessage: .constant(.empty),
-        errorMessage: .constant("")
-    )
 }

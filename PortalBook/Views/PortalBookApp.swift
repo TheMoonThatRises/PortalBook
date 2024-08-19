@@ -48,7 +48,7 @@ struct PortalBookApp: App {
             .toast(isPresenting: $viewModel.showLoadingToast) {
                 AlertToast(displayMode: .alert, type: .loading, title: viewModel.loadingMessage.rawValue)
             }
-            .toast(isPresenting: $viewModel.showErrorMessage) {
+            .toast(isPresenting: $viewModel.showErrorMessage, duration: 5) {
                 AlertToast(displayMode: .banner(.pop), type: .error(.red), title: viewModel.errorMessage)
             }
             .onAppear {
@@ -71,7 +71,11 @@ struct PortalBookApp: App {
 
                             studentVueClient.updateCredentials(username: creds.username, password: creds.password)
 
-                            _ = try await studentVueClient.scraper.login()
+                            Task {
+                                _ = try await studentVueClient.scraper.login()
+                            }
+
+                            _ = try await studentVueClient.api.xmlServiceRequest(methodName: .getSoundFileData)
 
                             withAnimation(.easeInOut) {
                                 viewIndex = .homeView
