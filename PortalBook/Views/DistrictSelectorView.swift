@@ -131,11 +131,6 @@ struct DistrictView: View {
             Text(">")
         }
         .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 5)
-                .fill(Color.white)
-                .shadow(color: .gray, radius: 2, x: 0, y: 2)
-            )
     }
 }
 
