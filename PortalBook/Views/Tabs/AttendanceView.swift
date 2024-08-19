@@ -105,8 +105,6 @@ struct AttendanceView: View {
                                                         count: unexcusedTardy.total))
                         }
                     }
-
-                    print(attendance)
                 } catch {
                     print("error: \(error.localizedDescription)")
                     errorMessage = error.localizedDescription
@@ -115,4 +113,3 @@ struct AttendanceView: View {
         }
     }
 }
-

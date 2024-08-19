@@ -85,7 +85,6 @@ struct HealthInfoView: View {
 
                 do {
                     info = try await client.api.getHealthInfo()
-                    print(info)
                 } catch {
                     print("error: \(error.localizedDescription)")
                     errorMessage = error.localizedDescription
