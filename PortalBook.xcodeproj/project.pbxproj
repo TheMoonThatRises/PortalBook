@@ -24,6 +24,7 @@
 		B683A6DD2AEB01F7003E8B13 /* LocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B683A6DC2AEB01F7003E8B13 /* LocationDelegate.swift */; };
 		B6BD9B1B2C71E03F005C6483 /* CourseHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BD9B1A2C71E039005C6483 /* CourseHistoryView.swift */; };
 		B6BE418B2C7395080089BB2D /* Color+random.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BE418A2C7395050089BB2D /* Color+random.swift */; };
+		B6BE418D2C73EAFF0089BB2D /* DataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BE418C2C73EAFD0089BB2D /* DataCache.swift */; };
 		B6C3E9B32AE9AE6500C11028 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = B6C3E9B22AE9AE6500C11028 /* KeychainAccess */; };
 		B6C3E9B82AEA2F6800C11028 /* StudentVue in Frameworks */ = {isa = PBXBuildFile; productRef = B6C3E9B72AEA2F6800C11028 /* StudentVue */; };
 		B6DBC1952A870E4D004E7043 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = B6DBC1942A870E4D004E7043 /* AlertToast */; };
@@ -60,6 +61,7 @@
 		B683A6DC2AEB01F7003E8B13 /* LocationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDelegate.swift; sourceTree = "<group>"; };
 		B6BD9B1A2C71E039005C6483 /* CourseHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseHistoryView.swift; sourceTree = "<group>"; };
 		B6BE418A2C7395050089BB2D /* Color+random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+random.swift"; sourceTree = "<group>"; };
+		B6BE418C2C73EAFD0089BB2D /* DataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCache.swift; sourceTree = "<group>"; };
 		B6DBC1962A870E8C004E7043 /* DistrictSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistrictSelectorView.swift; sourceTree = "<group>"; };
 		B6E103662A83DC7E00F98DA5 /* PortalBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PortalBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6E103692A83DC7E00F98DA5 /* PortalBookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortalBookApp.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 		B61D05EF2A8AC055003219F8 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				B6BE418C2C73EAFD0089BB2D /* DataCache.swift */,
 				B6E722E52C73239A009102DA /* CalendarHelper.swift */,
 				B61D05F02A8AC05D003219F8 /* PortalKeychain.swift */,
 				B61D05F62A8AD3FC003219F8 /* Errors.swift */,
@@ -316,6 +319,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6BE418D2C73EAFF0089BB2D /* DataCache.swift in Sources */,
 				B62D55582AEDA73300B896E0 /* InfoView.swift in Sources */,
 				B6F2204E2AEAAC8000AA99E6 /* HomeView.swift in Sources */,
 				B6F5F4E02C702EAC001D5283 /* String+htmlDecoded.swift in Sources */,

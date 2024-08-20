@@ -10,25 +10,19 @@ import StudentVue
 import AlertToast
 
 struct SchoolInfoView: View {
-    var client: StudentVue
+    @Binding var client: StudentVue
+    @EnvironmentObject var dataCache: DataCache
 
     @Binding var loadingMessage: LoadingMessages
     @Binding var errorMessage: String
 
     @State var refresh = false
-    @State var info: StudentVueApi.SchoolInfo? {
-        didSet {
-            if info == nil {
-                refresh.toggle()
-            }
-        }
-    }
 
     @State var selectedStaff: StudentVueApi.StaffInfo?
 
     var body: some View {
         NavigationStack {
-            if let info = info {
+            if let info = dataCache.schoolInfo {
                 Text("School Info")
                     .bold()
                     .font(.title)
@@ -101,31 +95,30 @@ struct SchoolInfoView: View {
                 Text("Unable to retrieve school information")
             }
         }
-        .navigationTitle("\(info?.school ?? "School") Information")
+        .navigationTitle("\(dataCache.schoolInfo?.school ?? "School") Information")
         .toolbar {
             ToolbarItem {
                 Button {
-                    info = nil
+                    refresh.toggle()
                 } label: {
                     Image(systemName: "arrow.clockwise")
                 }
             }
         }
-        .onAppear { info == nil ? info = nil : nil }
-        .onChange(of: refresh) {
-            Task {
-                defer {
-                    loadingMessage = .empty
-                }
-
+        .onAppear {
+            if !dataCache.schoolInfoLoaded {
                 loadingMessage = .loadingSchoolInfo
-
-                do {
-                    info = try await client.api.getSchoolInfo()
-                } catch {
-                    print("error: \(error.localizedDescription)")
-                    errorMessage = error.localizedDescription
-                }
+            }
+        }
+        .onChange(of: dataCache.schoolInfoLoaded) {
+            loadingMessage = dataCache.schoolInfoLoaded ? .empty : .loadingSchoolInfo
+        }
+        .onChange(of: refresh) {
+            do {
+                try dataCache.reloadSchoolInfo(client: client, force: true)
+            } catch {
+                print("error: \(error.localizedDescription)")
+                errorMessage = error.localizedDescription
             }
         }
         .sheet(item: $selectedStaff) { selected in

@@ -10,19 +10,13 @@ import StudentVue
 import MijickCalendarView
 
 struct CalendarView: View {
-    var client: StudentVue
+    @Binding var client: StudentVue
+    @EnvironmentObject var dataCache: DataCache
 
     @Binding var loadingMessage: LoadingMessages
     @Binding var errorMessage: String
 
     @State var refresh = false
-    @State var calendar: StudentVueApi.StudentCalendar? {
-        didSet {
-            if calendar == nil {
-                refresh.toggle()
-            }
-        }
-    }
 
     @State var selectedDate: Date? = .now
     @State var selectedMonth: Date = .now
@@ -31,44 +25,45 @@ struct CalendarView: View {
 
     var body: some View {
         NavigationStack {
-            if let calendar = calendar, let calendarHelper = calendarHelper {
+            if let calendar = dataCache.studentCalendar, let calendarHelper = calendarHelper {
                 MCalendarView(selectedDate: $selectedDate, selectedRange: nil) { config in
                     config.dayView(calendarHelper.buildDayView)
                 }
+            } else {
+                Text("Unable to load calendar")
             }
         }
         .navigationTitle("Calendar")
         .toolbar {
             ToolbarItem {
                 Button {
-                    calendar = nil
+                    refresh.toggle()
                 } label: {
                     Image(systemName: "arrow.clockwise")
                 }
             }
         }
-        .onAppear { calendar == nil ? calendar = nil : nil }
-        .onChange(of: refresh) {
-            Task {
-                defer {
-                    loadingMessage = .empty
-                }
-
+        .onAppear {
+            if !dataCache.studentCalendarLoaded {
                 loadingMessage = .loadingCalendar
+            }
+        }
+        .onChange(of: dataCache.studentCalendarLoaded) {
+            loadingMessage = dataCache.studentCalendarLoaded ? .empty : .loadingCalendar
 
-                do {
-                    calendar = try await client.api.getCalendar()
+            if dataCache.studentCalendarLoaded, let calendar = dataCache.studentCalendar {
+                calendarHelper = CalendarHelper(calendar: calendar.eventLists)
 
-                    if let calendar = calendar {
-                        calendarHelper = CalendarHelper(calendar: calendar.eventLists)
-                    }
-                    print(calendar)
-                } catch {
-                    print("error: \(error.localizedDescription)")
-                    errorMessage = error.localizedDescription
-                }
+                print(dataCache.studentCalendar)
+            }
+        }
+        .onChange(of: refresh) {
+            do {
+                try dataCache.reloadStudentCalendar(client: client, force: true)
+            } catch {
+                print("error: \(error.localizedDescription)")
+                errorMessage = error.localizedDescription
             }
         }
     }
 }
-

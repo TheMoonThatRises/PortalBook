@@ -17,6 +17,8 @@ enum ViewIndex {
 struct PortalBookApp: App {
     @StateObject private var viewModel = PortalBookVM()
 
+    @ObservedObject private var dataCache = DataCache()
+
     @State private var viewIndex: ViewIndex = .loginView
     @State private var studentVueClient = StudentVue(domain: Settings.shared.domain, username: "", password: "")
 
@@ -29,8 +31,7 @@ struct PortalBookApp: App {
             Group {
                 switch viewIndex {
                 case .districtView:
-                    DistrictSelectorView(client: $studentVueClient,
-                                         setView: $viewIndex,
+                    DistrictSelectorView(setView: $viewIndex,
                                          loadingMessage: $viewModel.loadingMessage,
                                          errorMessage: $viewModel.errorMessage)
                 case .loginView:
@@ -39,10 +40,11 @@ struct PortalBookApp: App {
                               loadingMessage: $viewModel.loadingMessage,
                               errorMessage: $viewModel.errorMessage)
                 case .homeView:
-                    HomeView(client: studentVueClient,
+                    HomeView(client: $studentVueClient,
                              viewIndex: $viewIndex,
                              loadingMessage: $viewModel.loadingMessage,
                              errorMessage: $viewModel.errorMessage)
+                        .environmentObject(dataCache)
                 }
             }
             .toast(isPresenting: $viewModel.showLoadingToast) {

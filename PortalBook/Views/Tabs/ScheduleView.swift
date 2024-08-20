@@ -10,26 +10,20 @@ import StudentVue
 import AlertToast
 
 struct ScheduleView: View {
-    var client: StudentVue
+    @Binding var client: StudentVue
+    @EnvironmentObject var dataCache: DataCache
 
     @Binding var loadingMessage: LoadingMessages
     @Binding var errorMessage: String
 
     @State var refresh = false
-    @State var schedule: StudentVueApi.ClassSchedule? {
-        didSet {
-            if schedule == nil {
-                refresh.toggle()
-            }
-        }
-    }
 
     @State var selectedTodayClass: StudentVueApi.ClassScheduleInfo?
     @State var selectedClassList: StudentVueApi.ClassListSchedule?
 
     var body: some View {
         NavigationStack {
-            if let schedule = schedule {
+            if let schedule = dataCache.classSchedule {
                 ScrollView {
                     Text("Today's Schedule")
                         .bold()
@@ -96,33 +90,34 @@ struct ScheduleView: View {
                     }
                 }
                 .padding()
+            } else if loadingMessage == .empty {
+                Text("Unable to load schedule")
             }
         }
-        .navigationTitle("Schedule: \(schedule?.termIndexName ?? "Unknown")")
+        .navigationTitle("Schedule: \(dataCache.classSchedule?.termIndexName ?? "Unknown")")
         .toolbar {
             ToolbarItem {
                 Button {
-                    schedule = nil
+                    refresh.toggle()
                 } label: {
                     Image(systemName: "arrow.clockwise")
                 }
             }
         }
-        .onAppear { schedule == nil ? schedule = nil : nil }
-        .onChange(of: refresh) {
-            Task {
-                defer {
-                    loadingMessage = .empty
-                }
-
+        .onAppear {
+            if !dataCache.classScheduleLoaded {
                 loadingMessage = .loadingSchedule
-
-                do {
-                    schedule = try await client.api.getClassSchedule()
-                } catch {
-                    print("error: \(error.localizedDescription)")
-                    errorMessage = error.localizedDescription
-                }
+            }
+        }
+        .onChange(of: dataCache.classScheduleLoaded) {
+            loadingMessage = dataCache.classScheduleLoaded ? .empty : .loadingSchedule
+        }
+        .onChange(of: refresh) {
+            do {
+                try dataCache.reloadClassSchedule(client: client, force: true)
+            } catch {
+                print("error: \(error.localizedDescription)")
+                errorMessage = error.localizedDescription
             }
         }
         .sheet(item: $selectedTodayClass) { selected in

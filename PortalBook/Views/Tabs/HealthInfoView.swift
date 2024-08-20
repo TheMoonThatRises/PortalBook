@@ -10,25 +10,19 @@ import StudentVue
 import AlertToast
 
 struct HealthInfoView: View {
-    var client: StudentVue
+    @Binding var client: StudentVue
+    @EnvironmentObject var dataCache: DataCache
 
     @Binding var loadingMessage: LoadingMessages
     @Binding var errorMessage: String
 
     @State var refresh = false
-    @State var info: StudentVueApi.StudentHealthInfo? {
-        didSet {
-            if info == nil {
-                refresh.toggle()
-            }
-        }
-    }
 
     @State var selectedImmunization: StudentVueApi.HealthImmunizationListing?
 
     var body: some View {
         NavigationStack {
-            if let info = info {
+            if let info = dataCache.studentHealthInfo {
                 ScrollView {
                     Text("Health Immunizations")
                         .bold()
@@ -68,27 +62,26 @@ struct HealthInfoView: View {
         .toolbar {
             ToolbarItem {
                 Button {
-                    info = nil
+                    refresh.toggle()
                 } label: {
                     Image(systemName: "arrow.clockwise")
                 }
             }
         }
-        .onAppear { info == nil ? info = nil : nil }
-        .onChange(of: refresh) {
-            Task {
-                defer {
-                    loadingMessage = .empty
-                }
-
+        .onAppear {
+            if !dataCache.studentHealthInfoLoaded {
                 loadingMessage = .loadingHealthInfo
-
-                do {
-                    info = try await client.api.getHealthInfo()
-                } catch {
-                    print("error: \(error.localizedDescription)")
-                    errorMessage = error.localizedDescription
-                }
+            }
+        }
+        .onChange(of: dataCache.studentHealthInfoLoaded) {
+            loadingMessage = dataCache.studentHealthInfoLoaded ? .empty : .loadingHealthInfo
+        }
+        .onChange(of: refresh) {
+            do {
+                try dataCache.reloadStudentHealthInfo(client: client, force: true)
+            } catch {
+                print("error: \(error.localizedDescription)")
+                errorMessage = error.localizedDescription
             }
         }
         .sheet(item: $selectedImmunization) { selected in

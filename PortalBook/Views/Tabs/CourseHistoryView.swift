@@ -9,23 +9,19 @@ import SwiftUI
 import StudentVue
 
 struct CourseHistoryView: View {
-    var client: StudentVue
+    @Binding var client: StudentVue
+    @EnvironmentObject var dataCache: DataCache
 
     @Binding var loadingMessage: LoadingMessages
     @Binding var errorMessage: String
 
     @State var refresh = false
-    @State var courseHistory: StudentVueScraper.CourseHistory? {
-        didSet {
-            courseHistory == nil ? refresh.toggle() : nil
-        }
-    }
 
     @State var selectedCourse: StudentVueScraper.CourseData?
 
     var body: some View {
         NavigationStack {
-            if let courseHistory = courseHistory?.courseHistory {
+            if let courseHistory = dataCache.courseHistory?.courseHistory {
                 ScrollView {
                     ForEach(courseHistory) { history in
                         DisclosureGroup {
@@ -74,27 +70,26 @@ struct CourseHistoryView: View {
         .toolbar {
             ToolbarItem {
                 Button {
-                    courseHistory = nil
+                    refresh.toggle()
                 } label: {
                     Image(systemName: "arrow.clockwise")
                 }
             }
         }
-        .onAppear { courseHistory == nil ? courseHistory = nil : nil }
-        .onChange(of: refresh) {
-            Task {
-                defer {
-                    loadingMessage = .empty
-                }
-
+        .onAppear {
+            if !dataCache.courseHistoryLoaded {
                 loadingMessage = .loadingCourseHistory
-
-                do {
-                    courseHistory = try await client.scraper.getCourseHistory()
-                } catch {
-                    print("error: \(error.localizedDescription)")
-                    errorMessage = error.localizedDescription
-                }
+            }
+        }
+        .onChange(of: dataCache.courseHistoryLoaded) {
+            loadingMessage = dataCache.courseHistoryLoaded ? .empty : .loadingCourseHistory
+        }
+        .onChange(of: refresh) {
+            do {
+                try dataCache.reloadCourseHistory(client: client, force: true)
+            } catch {
+                print("error: \(error.localizedDescription)")
+                errorMessage = error.localizedDescription
             }
         }
         .sheet(item: $selectedCourse) { selected in

@@ -9,26 +9,20 @@ import SwiftUI
 import StudentVue
 
 struct IDView: View {
-    var client: StudentVue
+    @Binding var client: StudentVue
+    @EnvironmentObject var dataCache: DataCache
 
     @Binding var loadingMessage: LoadingMessages
     @Binding var errorMessage: String
 
     @State var refresh = false
-    @State var info: StudentVueApi.StudentInfo? {
-        didSet {
-            if info == nil {
-                refresh.toggle()
-            }
-        }
-    }
 
     @State var selectedIDPage = 0
 
     var body: some View {
         NavigationStack {
             VStack {
-                if let info = info {
+                if let info = dataCache.studentInfo {
                     if let photo = info.photo,
                        let data = Data(base64Encoded: photo),
                        let uiImage = UIImage(data: data) {
@@ -76,27 +70,26 @@ struct IDView: View {
         .toolbar {
             ToolbarItem {
                 Button {
-                    info = nil
+                    refresh.toggle()
                 } label: {
                     Image(systemName: "arrow.clockwise")
                 }
             }
         }
-        .onAppear { info == nil ? info = nil : nil }
-        .onChange(of: refresh) {
-            Task {
-                defer {
-                    loadingMessage = .empty
-                }
-
+        .onAppear {
+            if !dataCache.studentInfoLoaded {
                 loadingMessage = .loadingMyInfo
-
-                do {
-                    info = try await client.api.getStudentInfo()
-                } catch {
-                    print("error: \(error.localizedDescription)")
-                    errorMessage = error.localizedDescription
-                }
+            }
+        }
+        .onChange(of: dataCache.studentInfoLoaded) {
+            loadingMessage = dataCache.studentInfoLoaded ? .empty : .loadingMyInfo
+        }
+        .onChange(of: refresh) {
+            do {
+                try dataCache.reloadStudentInfo(client: client, force: true)
+            } catch {
+                print("error: \(error.localizedDescription)")
+                errorMessage = error.localizedDescription
             }
         }
     }

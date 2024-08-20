@@ -9,7 +9,8 @@ import SwiftUI
 import StudentVue
 
 struct HomeView: View {
-    var client: StudentVue
+    @Binding var client: StudentVue
+    @EnvironmentObject var dataCache: DataCache
 
     @Binding var viewIndex: ViewIndex
 
@@ -20,42 +21,42 @@ struct HomeView: View {
         NavigationStack {
             List {
                 NavigationLink {
-                    GradebookView(client: client,
+                    GradebookView(client: $client,
                                   loadingMessage: $loadingMessage,
                                   errorMessage: $errorMessage)
                 } label: {
                     NavigationLinkRow(title: "Gradebook", image: Image(systemName: "a"))
                 }
                 NavigationLink {
-                    ScheduleView(client: client,
+                    ScheduleView(client: $client,
                                  loadingMessage: $loadingMessage,
                                  errorMessage: $errorMessage)
                 } label: {
                     NavigationLinkRow(title: "Schedule", image: Image(systemName: "clock"))
                 }
                 NavigationLink {
-                    CalendarView(client: client,
+                    CalendarView(client: $client,
                                  loadingMessage: $loadingMessage,
                                  errorMessage: $errorMessage)
                 } label: {
                     NavigationLinkRow(title: "Calendar", image: Image(systemName: "calendar"))
                 }
                 NavigationLink {
-                    AttendanceView(client: client,
+                    AttendanceView(client: $client,
                                    loadingMessage: $loadingMessage,
                                    errorMessage: $errorMessage)
                 } label: {
                     NavigationLinkRow(title: "Attendance", image: Image(systemName: "person.and.person"))
                 }
                 NavigationLink {
-                    InfoView(client: client,
+                    InfoView(client: $client,
                              loadingMessage: $loadingMessage,
                              errorMessage: $errorMessage)
                 } label: {
                     NavigationLinkRow(title: "All Info", image: Image(systemName: "info.square"))
                 }
                 NavigationLink {
-                    CourseHistoryView(client: client,
+                    CourseHistoryView(client: $client,
                                       loadingMessage: $loadingMessage,
                                       errorMessage: $errorMessage)
                 } label: {
@@ -65,12 +66,13 @@ struct HomeView: View {
 //                NavigationLinkRow(title: "Mail", image: Image(systemName: "envelope.fill"))
 //                NavigationLinkRow(title: "Fee", image: Image(systemName: "wallet.pass.fill"))
             }
+            .environmentObject(dataCache)
             .navigationTitle("PortalBook")
             .toolbar {
                 ToolbarItem {
                     Menu {
                         NavigationLink {
-                            IDView(client: client,
+                            IDView(client: $client,
                                    loadingMessage: $loadingMessage,
                                    errorMessage: $errorMessage)
                         } label: {
@@ -98,10 +100,18 @@ struct HomeView: View {
                     } label: {
                         Image(systemName: "line.3.horizontal")
                     }
+                    .environmentObject(dataCache)
                 }
             }
             .onAppear {
                 loadingMessage = .empty
+
+                do {
+                    try dataCache.reloadCache(client: client, force: false)
+                } catch {
+                    print("error: \(error.localizedDescription)")
+                    errorMessage = error.localizedDescription
+                }
             }
         }
     }

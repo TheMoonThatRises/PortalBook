@@ -27,88 +27,93 @@ struct AttendanceBar: Identifiable {
 }
 
 struct AttendanceView: View {
-    var client: StudentVue
+    @Binding var client: StudentVue
+    @EnvironmentObject var dataCache: DataCache
 
     @Binding var loadingMessage: LoadingMessages
     @Binding var errorMessage: String
 
     @State var refresh = false
-    @State var attendance: StudentVueApi.Attendance? {
-        didSet {
-            attendance == nil ? refresh.toggle() : nil
-        }
-    }
     @State var attendanceData: [AttendanceBar] = []
 
     var body: some View {
         NavigationStack {
-            Chart {
-                ForEach(attendanceData) { data in
-                    BarMark(
-                        x: .value("Period", data.period),
-                        y: .value("Count", data.count)
-                    )
-                    .foregroundStyle(by: .value("Color", data.color.description))
+            if !attendanceData.isEmpty {
+                Chart {
+                    ForEach(attendanceData) { data in
+                        BarMark(
+                            x: .value("Period", data.period),
+                            y: .value("Count", data.count)
+                        )
+                        .foregroundStyle(by: .value("Color", data.color.description))
+                    }
                 }
+            } else if loadingMessage == .empty {
+                Text("Unable to load attendance")
             }
         }
         .navigationTitle("Attendance")
         .toolbar {
             ToolbarItem {
                 Button {
-                    attendance = nil
+                    refresh.toggle()
                 } label: {
                     Image(systemName: "arrow.clockwise")
                 }
             }
         }
-        .onAppear { attendance == nil ? attendance = nil : nil }
-        .onChange(of: refresh) {
-            Task {
-                defer {
-                    loadingMessage = .empty
-                }
-
+        .onAppear {
+            if !dataCache.attendanceLoaded {
                 loadingMessage = .loadingAttendance
+            }
+        }
+        .onChange(of: dataCache.attendanceLoaded) {
+            loadingMessage = dataCache.attendanceLoaded ? .empty : .loadingAttendance
 
-                do {
-                    attendance = try await client.api.getAttendence()
+            if dataCache.attendanceLoaded {
+                populateAttendance()
+            }
+        }
+        .onChange(of: refresh) {
+            do {
+                try dataCache.reloadAttendance(client: client, force: true)
+            } catch {
+                print("error: \(error.localizedDescription)")
+                errorMessage = error.localizedDescription
+            }
+        }
+    }
 
-                    if let attendance = attendance {
-                        for excused in attendance.totalExcused {
-                            attendanceData.append(.init(color: .excused,
-                                                        period: excused.period,
-                                                        count: excused.total))
-                        }
+    private func populateAttendance() {
+        if let attendance = dataCache.attendance {
+            for excused in attendance.totalExcused {
+                attendanceData.append(.init(color: .excused,
+                                            period: excused.period,
+                                            count: excused.total))
+            }
 
-                        for tardy in attendance.totalTardies {
-                            attendanceData.append(.init(color: .tardies,
-                                                        period: tardy.period,
-                                                        count: tardy.total))
-                        }
+            for tardy in attendance.totalTardies {
+                attendanceData.append(.init(color: .tardies,
+                                            period: tardy.period,
+                                            count: tardy.total))
+            }
 
-                        for unexcused in attendance.totalUnexcused {
-                            attendanceData.append(.init(color: .unexcused,
-                                                        period: unexcused.period,
-                                                        count: unexcused.total))
-                        }
+            for unexcused in attendance.totalUnexcused {
+                attendanceData.append(.init(color: .unexcused,
+                                            period: unexcused.period,
+                                            count: unexcused.total))
+            }
 
-                        for activity in attendance.totalActivities {
-                            attendanceData.append(.init(color: .activities,
-                                                        period: activity.period,
-                                                        count: activity.total))
-                        }
+            for activity in attendance.totalActivities {
+                attendanceData.append(.init(color: .activities,
+                                            period: activity.period,
+                                            count: activity.total))
+            }
 
-                        for unexcusedTardy in attendance.totalUnexcusedTardies {
-                            attendanceData.append(.init(color: .unexcusedTardies,
-                                                        period: unexcusedTardy.period,
-                                                        count: unexcusedTardy.total))
-                        }
-                    }
-                } catch {
-                    print("error: \(error.localizedDescription)")
-                    errorMessage = error.localizedDescription
-                }
+            for unexcusedTardy in attendance.totalUnexcusedTardies {
+                attendanceData.append(.init(color: .unexcusedTardies,
+                                            period: unexcusedTardy.period,
+                                            count: unexcusedTardy.total))
             }
         }
     }

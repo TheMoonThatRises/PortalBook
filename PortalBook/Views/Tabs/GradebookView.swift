@@ -11,21 +11,17 @@ import StudentVue
 import Charts
 
 struct GradebookView: View {
-    var client: StudentVue
+    @Binding var client: StudentVue
+    @EnvironmentObject var dataCache: DataCache
 
     @Binding var loadingMessage: LoadingMessages
     @Binding var errorMessage: String
 
     @State var refresh = false
-    @State var gradebook: StudentVueApi.GradeBook? {
-        didSet {
-            gradebook == nil ? refresh.toggle() : nil
-        }
-    }
 
     var body: some View {
         NavigationStack {
-            if let gradebook = gradebook {
+            if let gradebook = dataCache.gradeBook {
                 List(gradebook.courses, id: \.period) { course in
                     NavigationLink {
                         ClassView(course: course)
@@ -63,33 +59,34 @@ struct GradebookView: View {
                         .foregroundColor(.blue)
                     }
                 }
+            } else if loadingMessage == .empty {
+                Text("Unable to load gradebook")
             }
         }
         .navigationTitle("Gradebook")
         .toolbar {
             ToolbarItem {
                 Button {
-                    gradebook = nil
+                    refresh.toggle()
                 } label: {
                     Image(systemName: "arrow.clockwise")
                 }
             }
         }
-        .onAppear { gradebook == nil ? gradebook = nil : nil }
-        .onChange(of: refresh) {
-            Task {
-                defer {
-                    loadingMessage = .empty
-                }
-
+        .onAppear {
+            if !dataCache.gradeBookLoaded {
                 loadingMessage = .loadingGrades
-
-                do {
-                    gradebook = try await client.api.getGradeBook()
-                } catch {
-                    print("error: \(error.localizedDescription)")
-                    errorMessage = error.localizedDescription
-                }
+            }
+        }
+        .onChange(of: dataCache.gradeBookLoaded) {
+            loadingMessage = dataCache.gradeBookLoaded ? .empty : .loadingGrades
+        }
+        .onChange(of: refresh) {
+            do {
+                try dataCache.reloadGradeBook(client: client, force: true)
+            } catch {
+                print("error: \(error.localizedDescription)")
+                errorMessage = error.localizedDescription
             }
         }
     }
