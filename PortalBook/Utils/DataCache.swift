@@ -87,6 +87,13 @@ class DataCache: ObservableObject {
     @Published public private(set) var studentHealthInfoLoaded = false
     @Published public private(set) var schoolInfoLoaded = false
 
+    @Published public private(set) var isCacheLoaded = false
+
+    private var cacheStatus: Bool {
+        studentInfoLoaded && studentCalendarLoaded && courseHistoryLoaded && attendanceLoaded && gradeBookLoaded &&
+        classScheduleLoaded && studentHealthInfoLoaded && schoolInfoLoaded
+    }
+
     public init() {
         self.cacheItemInfo = [:]
 
@@ -114,8 +121,10 @@ class DataCache: ObservableObject {
                 }
 
                 cacheItemInfo[type]?.1 = Task { @MainActor in
+                    isCacheLoaded = false
                     try await taskItem()
                     cacheItemInfo[type]?.0 = Date.now.timeIntervalSince1970
+                    isCacheLoaded = cacheStatus
                 }
             }
         } else {

@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Combine
+import AlertToast
 import StudentVue
 
 struct HomeView: View {
@@ -16,6 +18,10 @@ struct HomeView: View {
 
     @Binding var loadingMessage: LoadingMessages
     @Binding var errorMessage: String
+
+    @State var showCacheLoadingAlert = false
+
+    @State var cacheCancellable: Cancellable?
 
     var body: some View {
         NavigationStack {
@@ -68,6 +74,9 @@ struct HomeView: View {
             }
             .environmentObject(dataCache)
             .navigationTitle("PortalBook")
+            .toast(isPresenting: $showCacheLoadingAlert) {
+                AlertToast(displayMode: .banner(.pop), type: .loading, title: "Loading information cache")
+            }
             .toolbar {
                 ToolbarItem {
                     Menu {
@@ -80,6 +89,14 @@ struct HomeView: View {
                         }
                         Button("Settings") {
 
+                        }
+                        Button("Reset Cache") {
+                            do {
+                                try dataCache.reloadCache(client: client, force: true)
+                            } catch {
+                                print("error: \(error.localizedDescription)")
+                                errorMessage = error.localizedDescription
+                            }
                         }
                         Button("Logout") {
                             Settings.shared.didManuallyLogout = true
@@ -106,12 +123,24 @@ struct HomeView: View {
             .onAppear {
                 loadingMessage = .empty
 
+                if cacheCancellable == nil {
+                    showCacheLoadingAlert = !dataCache.isCacheLoaded
+
+                    cacheCancellable = dataCache.$isCacheLoaded.sink { value in
+                        showCacheLoadingAlert = !value
+                    }
+                }
+
                 do {
                     try dataCache.reloadCache(client: client, force: false)
                 } catch {
                     print("error: \(error.localizedDescription)")
                     errorMessage = error.localizedDescription
                 }
+            }
+            .onDisappear {
+                cacheCancellable?.cancel()
+                cacheCancellable = nil
             }
         }
     }
