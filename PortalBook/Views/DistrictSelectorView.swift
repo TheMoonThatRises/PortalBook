@@ -96,7 +96,7 @@ struct DistrictSelectorView: View {
                     loadingMessage = .empty
                 }
 
-                try await Task.sleep(nanoseconds: 70_000_000)
+                try await Task.sleep(for: .milliseconds(700))
 
                 districtList = try await StudentVueApi.getDistricts(zip: zipCode)
 
