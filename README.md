@@ -4,9 +4,11 @@
 
 A faster, and more efficient version of the official StudentVue app.
 
-<img alt="Home screen" src="./assets/homescreen.png" width="250">
-<img alt="Class view" src="./assets/classview.png" width="250">
-<img alt="Assignment view" src="./assets/assignmentview.png" width="250">
+<p align="center">
+  <img alt="Home screen" src="./assets/homescreen.png" width="250">
+  <img alt="Class view" src="./assets/classview.png" width="250">
+  <img alt="Assignment view" src="./assets/assignmentview.png" width="250">
+</p>
 
 ## Features
 
