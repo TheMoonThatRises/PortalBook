@@ -23,5 +23,3 @@ A faster, and more efficient version of the official StudentVue app.
 - [KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess)
 - [MijickCalendarView](https://github.com/Mijick/CalendarView)
 - [StudentVue](https://github.com/TheMoonThatRises/StudentVue.swift)
-- [SwiftSoup](https://github.com/scinfu/SwiftSoup)
-- [SWXMLHash](https://github.com/drmohundro/SWXMLHash)
