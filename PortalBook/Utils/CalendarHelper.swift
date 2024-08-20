@@ -21,9 +21,9 @@ class CalendarHelper {
     }
 
     public func buildDayView(_ date: Date,
-                                    _ isCurrentMonth: Bool,
-                                    selectedDate: Binding<Date?>?,
-                                    range: Binding<MDateRange?>?) -> BuildDayView {
+                             _ isCurrentMonth: Bool,
+                             selectedDate: Binding<Date?>?,
+                             range: Binding<MDateRange?>?) -> BuildDayView {
         return BuildDayView(date: date,
                             color: getDateColor(date),
                             isCurrentMonth: isCurrentMonth,
