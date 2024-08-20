@@ -10,8 +10,6 @@ import StudentVue
 import AlertToast
 
 struct DistrictSelectorView: View {
-    @Binding var client: StudentVue
-
     @Binding var setView: ViewIndex
 
     @Binding var loadingMessage: LoadingMessages
@@ -92,15 +90,13 @@ struct DistrictSelectorView: View {
             loadingMessage = .loadingDistricts
 
             loadDistrictsTask = Task { @MainActor in
-                defer {
-                    loadingMessage = .empty
-                }
-
-                try await Task.sleep(for: .milliseconds(700))
+                try await Task.sleep(for: .milliseconds(500))
 
                 districtList = try await StudentVueApi.getDistricts(zip: zipCode)
 
                 districtList?.districts = Array(Set(districtList?.districts ?? []))
+
+                loadingMessage = .empty
             }
         }
     }
