@@ -136,7 +136,9 @@ struct LoginView: View {
                     _ = try await client.scraper.login()
                 }
 
-                _ = try await client.api.xmlServiceRequest(methodName: .getSoundFileData)
+                if try await !client.api.checkCredentials() {
+                    throw StudentVueApi.StudentVueErrors.invalidCredentials
+                }
 
                 withAnimation(.easeInOut) {
                     viewIndex = .homeView

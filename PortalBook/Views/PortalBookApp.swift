@@ -75,7 +75,9 @@ struct PortalBookApp: App {
                                 _ = try await studentVueClient.scraper.login()
                             }
 
-                            _ = try await studentVueClient.api.xmlServiceRequest(methodName: .getSoundFileData)
+                            if try await !studentVueClient.api.checkCredentials() {
+                                throw StudentVueApi.StudentVueErrors.invalidCredentials
+                            }
 
                             withAnimation(.easeInOut) {
                                 viewIndex = .homeView
