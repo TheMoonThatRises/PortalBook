@@ -146,7 +146,7 @@ struct DetailedGradeView: View {
 
     var body: some View {
         NavigationStack {
-            Text(assignment.measureDescription)
+            Text(assignment.measureDescription.stringByDecodingHTMLEntities)
                 .font(.caption)
                 .padding()
             Grid {

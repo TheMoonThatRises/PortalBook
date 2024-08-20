@@ -40,7 +40,7 @@
 		B6E722E62C73239D009102DA /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E722E52C73239A009102DA /* CalendarHelper.swift */; };
 		B6F2204E2AEAAC8000AA99E6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F2204D2AEAAC8000AA99E6 /* HomeView.swift */; };
 		B6F5F4DE2C7028DB001D5283 /* StudentVueApi+Missing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F5F4DD2C7028D3001D5283 /* StudentVueApi+Missing.swift */; };
-		B6F5F4E02C702EAC001D5283 /* String+htmlDecoded.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F5F4DF2C702EA8001D5283 /* String+htmlDecoded.swift */; };
+		B6F5F4E02C702EAC001D5283 /* String+stringByDecodingHTMLEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F5F4DF2C702EA8001D5283 /* String+stringByDecodingHTMLEntities.swift */; };
 		B6F5F4E22C705698001D5283 /* AttendanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F5F4E12C705695001D5283 /* AttendanceView.swift */; };
 		B6F5F4E42C705E91001D5283 /* Color+attendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F5F4E32C705E8D001D5283 /* Color+attendance.swift */; };
 /* End PBXBuildFile section */
@@ -74,7 +74,7 @@
 		B6E722E52C73239A009102DA /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
 		B6F2204D2AEAAC8000AA99E6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B6F5F4DD2C7028D3001D5283 /* StudentVueApi+Missing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudentVueApi+Missing.swift"; sourceTree = "<group>"; };
-		B6F5F4DF2C702EA8001D5283 /* String+htmlDecoded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+htmlDecoded.swift"; sourceTree = "<group>"; };
+		B6F5F4DF2C702EA8001D5283 /* String+stringByDecodingHTMLEntities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+stringByDecodingHTMLEntities.swift"; sourceTree = "<group>"; };
 		B6F5F4E12C705695001D5283 /* AttendanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceView.swift; sourceTree = "<group>"; };
 		B6F5F4E32C705E8D001D5283 /* Color+attendance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+attendance.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -102,7 +102,7 @@
 				B6BE418A2C7395050089BB2D /* Color+random.swift */,
 				B6E722DE2C73032D009102DA /* Image+barCode.swift */,
 				B6F5F4E32C705E8D001D5283 /* Color+attendance.swift */,
-				B6F5F4DF2C702EA8001D5283 /* String+htmlDecoded.swift */,
+				B6F5F4DF2C702EA8001D5283 /* String+stringByDecodingHTMLEntities.swift */,
 				B6F5F4DD2C7028D3001D5283 /* StudentVueApi+Missing.swift */,
 			);
 			path = Extensions;
@@ -322,7 +322,7 @@
 				B6BE418D2C73EAFF0089BB2D /* DataCache.swift in Sources */,
 				B62D55582AEDA73300B896E0 /* InfoView.swift in Sources */,
 				B6F2204E2AEAAC8000AA99E6 /* HomeView.swift in Sources */,
-				B6F5F4E02C702EAC001D5283 /* String+htmlDecoded.swift in Sources */,
+				B6F5F4E02C702EAC001D5283 /* String+stringByDecodingHTMLEntities.swift in Sources */,
 				B62D55632AEDC34800B896E0 /* HealthInfoView.swift in Sources */,
 				B6E722DF2C73033A009102DA /* Image+barCode.swift in Sources */,
 				B6E722E12C731B87009102DA /* CalendarView.swift in Sources */,

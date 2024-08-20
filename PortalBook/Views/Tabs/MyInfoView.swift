@@ -38,7 +38,7 @@ struct MyInfoView: View {
                     Grid {
                         Divider()
                         GridRow {
-                            let address = info.address.htmlDecoded.components(separatedBy: "<br>")
+                            let address = info.address.stringByDecodingHTMLEntities.components(separatedBy: "<br>")
 
                             Text("Address")
                             Spacer()
