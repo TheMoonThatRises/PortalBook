@@ -65,6 +65,8 @@ struct AttendanceView: View {
         .onAppear {
             if !dataCache.attendanceLoaded {
                 loadingMessage = .loadingAttendance
+            } else {
+                populateAttendance()
             }
         }
         .onChange(of: dataCache.attendanceLoaded) {

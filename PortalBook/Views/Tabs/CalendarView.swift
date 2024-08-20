@@ -46,6 +46,10 @@ struct CalendarView: View {
         .onAppear {
             if !dataCache.studentCalendarLoaded {
                 loadingMessage = .loadingCalendar
+            } else if let calendar = dataCache.studentCalendar {
+                calendarHelper = CalendarHelper(calendar: calendar.eventLists)
+
+                print(dataCache.studentCalendar)
             }
         }
         .onChange(of: dataCache.studentCalendarLoaded) {
