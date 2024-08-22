@@ -19,6 +19,7 @@ struct HomeView: View {
     @Binding var loadingMessage: LoadingMessages
     @Binding var errorMessage: String
 
+    @State var refresh = false
     @State var showCacheLoadingAlert = false
 
     @State var cacheCancellable: Cancellable?
@@ -120,6 +121,9 @@ struct HomeView: View {
                     .environmentObject(dataCache)
                 }
             }
+            .refreshable {
+                refresh.toggle()
+            }
             .onAppear {
                 loadingMessage = .empty
 
@@ -131,6 +135,9 @@ struct HomeView: View {
                     }
                 }
 
+                refresh.toggle()
+            }
+            .onChange(of: refresh) {
                 do {
                     try dataCache.reloadCache(client: client, force: false)
                 } catch {

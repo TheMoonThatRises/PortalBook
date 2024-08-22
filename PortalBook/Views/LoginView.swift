@@ -136,7 +136,7 @@ struct LoginView: View {
                     _ = try await client.scraper.login()
                 }
 
-                if try await !client.api.checkCredentials() {
+                if try await !client.checkCredentials() {
                     throw StudentVueApi.StudentVueErrors.invalidCredentials
                 }
 

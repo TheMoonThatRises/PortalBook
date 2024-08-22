@@ -61,6 +61,9 @@ struct CourseHistoryView: View {
                         }
                     }
                 }
+                .refreshable {
+                    refresh.toggle()
+                }
             } else if loadingMessage == .empty {
                 Text("Unable to load course history")
             }

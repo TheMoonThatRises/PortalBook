@@ -59,6 +59,9 @@ struct GradebookView: View {
                         .foregroundColor(.blue)
                     }
                 }
+                .refreshable {
+                    refresh.toggle()
+                }
             } else if loadingMessage == .empty {
                 Text("Unable to load gradebook")
             }

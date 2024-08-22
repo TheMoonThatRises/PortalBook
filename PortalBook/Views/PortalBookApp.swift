@@ -77,7 +77,7 @@ struct PortalBookApp: App {
                                 _ = try await studentVueClient.scraper.login()
                             }
 
-                            if try await !studentVueClient.api.checkCredentials() {
+                            if try await !studentVueClient.checkCredentials() {
                                 throw StudentVueApi.StudentVueErrors.invalidCredentials
                             }
 

@@ -55,6 +55,9 @@ struct DistrictSelectorView: View {
                     .listRowSeparator(.hidden)
                     .listRowBackground(Color.clear)
                     .listRowInsets(EdgeInsets(top: 0, leading: 10, bottom: 10, trailing: 0))
+                    .refreshable {
+                        zipCode = zipCode
+                    }
                 }
             }
 

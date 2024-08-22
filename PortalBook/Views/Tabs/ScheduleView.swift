@@ -90,6 +90,9 @@ struct ScheduleView: View {
                     }
                 }
                 .padding()
+                .refreshable {
+                    refresh.toggle()
+                }
             } else if loadingMessage == .empty {
                 Text("Unable to load schedule")
             }
