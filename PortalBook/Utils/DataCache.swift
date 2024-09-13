@@ -107,7 +107,7 @@ class DataCache: ObservableObject {
     private func loadCacheItem(item: Any?,
                                type: CacheItem,
                                force: Bool,
-                               taskItem: @escaping() async throws -> Void) throws {
+                               taskItem: @escaping () async throws -> Void) throws {
         let cacheItem = cacheItemInfo[type]
 
         if let cacheItem = cacheItem {
