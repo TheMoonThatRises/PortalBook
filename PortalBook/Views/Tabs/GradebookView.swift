@@ -8,7 +8,6 @@
 import SwiftUI
 import AlertToast
 import StudentVue
-import Charts
 
 struct GradebookView: View {
     @Binding var client: StudentVue
