@@ -102,6 +102,7 @@ struct AttendanceView: View {
         }
     }
 
+    // swiftlint:disable:next cyclomatic_complexity
     private func populateAttendance() {
         if let attendance = dataCache.attendance {
             attendanceData.removeAll()
