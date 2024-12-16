@@ -2,7 +2,7 @@
 //  HomeView.swift
 //  PortalBook
 //
-//  Created by TheMoonThatRises on 10/26/23.
+//  Created by Peter Duanmu on 10/26/23.
 //
 
 import SwiftUI

@@ -2,7 +2,7 @@
 //  StudentVueApi+Missing.swift
 //  PortalBook
 //
-//  Created by TheMoonThatRises on 8/16/24.
+//  Created by Peter Duanmu on 8/16/24.
 //
 
 import StudentVue

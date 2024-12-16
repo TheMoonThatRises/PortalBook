@@ -2,7 +2,7 @@
 //  PortalBookApp.swift
 //  PortalBook
 //
-//  Created by TheMoonThatRises on 8/9/23.
+//  Created by Peter Duanmu on 8/9/23.
 //
 
 import SwiftUI

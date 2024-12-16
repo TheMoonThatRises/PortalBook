@@ -2,7 +2,7 @@
 //  IDView.swift
 //  PortalBook
 //
-//  Created by TheMoonThatRises on 8/18/24.
+//  Created by Peter Duanmu on 8/18/24.
 //
 
 import SwiftUI

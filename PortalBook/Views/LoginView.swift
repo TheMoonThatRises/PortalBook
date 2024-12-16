@@ -2,7 +2,7 @@
 //  LoginView.swift
 //  PortalBook
 //
-//  Created by TheMoonThatRises on 8/9/23.
+//  Created by Peter Duanmu on 8/9/23.
 //
 
 import SwiftUI
@@ -48,7 +48,7 @@ struct LoginView: View {
                 Spacer()
                     .padding()
 
-                Image(uiImage: UIImage(named: "AppIcon") ?? UIImage())
+                Image(uiImage: Bundle.main.icon ?? UIImage())
                     .resizable()
                     .frame(width: viewGeom.size.width / 2, height: viewGeom.size.width / 2)
                     .cornerRadius(7.5)

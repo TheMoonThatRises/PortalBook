@@ -2,7 +2,7 @@
 //  DistrictSelectorView.swift
 //  PortalBook
 //
-//  Created by TheMoonThatRises on 8/11/23.
+//  Created by Peter Duanmu on 8/11/23.
 //
 
 import SwiftUI

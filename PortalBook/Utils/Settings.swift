@@ -2,7 +2,7 @@
 //  Settings.swift
 //  PortalBook
 //
-//  Created by TheMoonThatRises on 8/18/23.
+//  Created by Peter Duanmu on 8/18/23.
 //
 
 import SwiftUI

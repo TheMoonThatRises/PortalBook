@@ -2,7 +2,7 @@
 //  PortalKeychain.swift
 //  PortalBook
 //
-//  Created by TheMoonThatRises on 8/14/23.
+//  Created by Peter Duanmu on 8/14/23.
 //
 
 import Foundation
@@ -19,7 +19,7 @@ class PortalKeychain {
 
     private let keychain = Keychain(service: tag)
 
-    private static let tag = "com.themoonthatrises.keychain"
+    private static let tag = "com.Peter Duanmu.keychain"
 
     private static func credentialsToData(credentials: Credentials) throws -> Data {
         return try PropertyListEncoder.init().encode(credentials)
