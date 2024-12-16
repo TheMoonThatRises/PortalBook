@@ -33,7 +33,6 @@
 		B6E1036A2A83DC7E00F98DA5 /* PortalBookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E103692A83DC7E00F98DA5 /* PortalBookApp.swift */; };
 		B6E1036C2A83DC7E00F98DA5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E1036B2A83DC7E00F98DA5 /* LoginView.swift */; };
 		B6E1036E2A83DC8100F98DA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6E1036D2A83DC8100F98DA5 /* Assets.xcassets */; };
-		B6E103712A83DC8100F98DA5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6E103702A83DC8100F98DA5 /* Preview Assets.xcassets */; };
 		B6E722DB2C72FCE7009102DA /* IDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E722DA2C72FCE4009102DA /* IDView.swift */; };
 		B6E722DF2C73033A009102DA /* Image+barCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E722DE2C73032D009102DA /* Image+barCode.swift */; };
 		B6E722E12C731B87009102DA /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E722E02C731B82009102DA /* CalendarView.swift */; };
@@ -69,7 +68,6 @@
 		B6E103692A83DC7E00F98DA5 /* PortalBookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortalBookApp.swift; sourceTree = "<group>"; };
 		B6E1036B2A83DC7E00F98DA5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B6E1036D2A83DC8100F98DA5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B6E103702A83DC8100F98DA5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B6E722DA2C72FCE4009102DA /* IDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDView.swift; sourceTree = "<group>"; };
 		B6E722DE2C73032D009102DA /* Image+barCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+barCode.swift"; sourceTree = "<group>"; };
 		B6E722E02C731B82009102DA /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -195,17 +193,8 @@
 				B61D05E92A8A8814003219F8 /* Extensions */,
 				B625DD022A86D8A800C79478 /* Views */,
 				B6E1036D2A83DC8100F98DA5 /* Assets.xcassets */,
-				B6E1036F2A83DC8100F98DA5 /* Preview Content */,
 			);
 			path = PortalBook;
-			sourceTree = "<group>";
-		};
-		B6E1036F2A83DC8100F98DA5 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				B6E103702A83DC8100F98DA5 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		B6E722D92C72FCDB009102DA /* DropDown */ = {
@@ -289,7 +278,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6E103712A83DC8100F98DA5 /* Preview Assets.xcassets in Resources */,
 				B6E1036E2A83DC8100F98DA5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -484,7 +472,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"PortalBook/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 6V935SBNGL;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -525,7 +513,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"PortalBook/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 6V935SBNGL;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
