@@ -2,13 +2,20 @@
 
 # PortalBook
 
-A faster, and more efficient version of the official StudentVue app.
+<div align="center">
+  <img alt="PortalBook logo" src="./PortalBook/Assets.xcassets/AppIcon 1.appiconset/app-icon-512@2x~mac.png" width="250">
 
-<p align="center">
+  <h2>
+    A faster, and more efficient version of the official StudentVue app.
+  </h2>
+
+  <br>
+  <br>
+
   <img alt="Home screen" src="./assets/homescreen.png" width="250">
   <img alt="Class view" src="./assets/classview.png" width="250">
   <img alt="Assignment view" src="./assets/assignmentview.png" width="250">
-</p>
+</div>
 
 ## Features
 
