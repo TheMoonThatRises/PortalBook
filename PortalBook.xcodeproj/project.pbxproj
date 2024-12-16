@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		34103D732D1095E6008E2E90 /* Bundle+icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34103D722D1095DE008E2E90 /* Bundle+icon.swift */; };
 		B61A23292A8FBB67007E3965 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61A23282A8FBB67007E3965 /* Settings.swift */; };
 		B61D05F12A8AC05D003219F8 /* PortalKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61D05F02A8AC05D003219F8 /* PortalKeychain.swift */; };
 		B61D05F72A8AD3FC003219F8 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61D05F62A8AD3FC003219F8 /* Errors.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		34103D722D1095DE008E2E90 /* Bundle+icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+icon.swift"; sourceTree = "<group>"; };
 		34FE66602D0FEEC000CB0F59 /* PortalBook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PortalBook.entitlements; sourceTree = "<group>"; };
 		B61A23282A8FBB67007E3965 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		B61D05F02A8AC05D003219F8 /* PortalKeychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortalKeychain.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 		B61D05E92A8A8814003219F8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				34103D722D1095DE008E2E90 /* Bundle+icon.swift */,
 				B63B83502C7708DC003C1217 /* CharacterSet+numbers.swift */,
 				B6BE418A2C7395050089BB2D /* Color+random.swift */,
 				B6E722DE2C73032D009102DA /* Image+barCode.swift */,
@@ -289,6 +292,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		B6643EA72A86E2860097397F /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -320,6 +324,7 @@
 				B6E722DF2C73033A009102DA /* Image+barCode.swift in Sources */,
 				B6E722E12C731B87009102DA /* CalendarView.swift in Sources */,
 				B62D555F2AEDC0E400B896E0 /* NavigationLinkRow.swift in Sources */,
+				34103D732D1095E6008E2E90 /* Bundle+icon.swift in Sources */,
 				B6BE418B2C7395080089BB2D /* Color+random.swift in Sources */,
 				B63B83512C7708E1003C1217 /* CharacterSet+numbers.swift in Sources */,
 				B6E722E62C73239D009102DA /* CalendarHelper.swift in Sources */,
