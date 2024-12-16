@@ -16,7 +16,6 @@ struct CourseHistoryView: View {
     @Binding var errorMessage: String
 
     @State var refresh = false
-
     @State var selectedCourse: StudentVueScraper.CourseData?
 
     var body: some View {
