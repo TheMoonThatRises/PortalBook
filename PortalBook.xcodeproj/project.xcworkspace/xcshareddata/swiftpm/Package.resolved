@@ -7,7 +7,7 @@
       "location" : "https://github.com/elai950/AlertToast",
       "state" : {
         "branch" : "master",
-        "revision" : "638f38f9daf08e17b7caea22d2fcb9c0a418d1b6"
+        "revision" : "76a1c1793cd3443001c20c6033beb84453b25d9f"
       }
     },
     {
@@ -34,7 +34,7 @@
       "location" : "https://github.com/TheMoonThatRises/StudentVue.swift",
       "state" : {
         "branch" : "develop",
-        "revision" : "dfb9ed97aa8bdeaba13ebd202ab4809d9a00b0fe"
+        "revision" : "abbc6b03cd5a6272a2dd09eed6d2fe5a95b76a39"
       }
     },
     {
@@ -42,8 +42,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/scinfu/SwiftSoup.git",
       "state" : {
-        "revision" : "3c2c7e1e72b8abd96eafbae80323c5c1e5317437",
-        "version" : "2.7.5"
+        "revision" : "0837db354faf9c9deb710dc597046edaadf5360f",
+        "version" : "2.7.6"
       }
     },
     {
