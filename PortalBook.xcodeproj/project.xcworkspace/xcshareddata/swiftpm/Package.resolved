@@ -34,7 +34,7 @@
       "location" : "https://github.com/TheMoonThatRises/StudentVue.swift",
       "state" : {
         "branch" : "develop",
-        "revision" : "abbc6b03cd5a6272a2dd09eed6d2fe5a95b76a39"
+        "revision" : "b27e6e49d03efad62c105cdd11859da1853962f2"
       }
     },
     {
@@ -42,8 +42,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/scinfu/SwiftSoup.git",
       "state" : {
-        "revision" : "0837db354faf9c9deb710dc597046edaadf5360f",
-        "version" : "2.7.6"
+        "revision" : "6b4930da67b462d3f200472c902dd016d37a554d",
+        "version" : "2.7.7"
       }
     },
     {
