@@ -3,7 +3,7 @@
 # PortalBook
 
 <div align="center">
-  <img alt="PortalBook logo" src="./PortalBook/Assets.xcassets/AppIcon 1.appiconset/app-icon-512@2x~mac.png" width="250">
+  <img alt="PortalBook logo" src="./PortalBook/Assets.xcassets/AppIcon.appiconset/app-icon~ios-marketing.png" width="250">
 
   <h2>
     A faster, and more efficient version of the official StudentVue app.
